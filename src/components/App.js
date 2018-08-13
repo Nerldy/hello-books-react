@@ -1,14 +1,20 @@
-import React, {Component} from 'react';
-import SignUp from "./Signup";
+import React, {Component} from "react";
+import Home from "./Home";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 
 class App extends Component {
     render() {
         return (
-            <div>
-                hello books
-                <SignUp/>
-            </div>
+            <Router>
+                <div>
+                    <Route
+                        exact
+                        path={"/"}
+                        component={Home}/>
+
+                </div>
+            </Router>
         );
     }
 }
