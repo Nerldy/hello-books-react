@@ -1,11 +1,13 @@
 import React, {Component} from "react";
+import {Redirect, withRouter} from "react-router-dom";
 
-class SignUp extends Component {
+class Login extends Component {
+    //comp for user to use to login
+
     state = {
         username: "",
-        email: "",
         password: "",
-        confirm_password: ""
+        isLogged: false
     };
 
     handleChange = e => {
@@ -17,13 +19,24 @@ class SignUp extends Component {
     handleSubmit = e => {
         //handle form submission
         e.preventDefault();
+
+        this.setState({isLogged: true});
+
+        if (this.state.isLogged) {
+            this.props.history.replace("/dashboard");
+        }
     };
 
+
     render() {
+        if (this.state.isLogged) {
+            return <Redirect
+                push
+                to={"/dashboard"}/>;
+        }
         return (
             <div>
-                <h2>Sign Up</h2>
-
+                <h2>Login</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Username:
@@ -32,37 +45,20 @@ class SignUp extends Component {
                             name="username"
                             value={this.state.username}
                             onChange={this.handleChange}/>
+
                     </label>
 
                     <label>
-                        Email:
-                        <input
-                            type="email"
-                            name="email"
-                            value={this.state.email}
-                            onChange={this.handleChange}/>
-                    </label>
-
-                    <label>
-                        Passoword:
+                        Password:
                         <input
                             type="password"
                             name="password"
                             value={this.state.password}
                             onChange={this.handleChange}/>
+
                     </label>
 
-                    <label>
-                        Repeat Password:
-                        <input
-                            type="password"
-                            name="confirm_password"
-                            value={this.state.confirm_password}
-                            onChange={this.handleChange}/>
-                    </label>
-
-                    <button type="submit">Sign Up</button>
-
+                    <button type="submit">Login</button>
 
                 </form>
             </div>
@@ -70,4 +66,4 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp;
+export default withRouter(Login);

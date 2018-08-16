@@ -1,40 +1,27 @@
+import {NavLink, Route, Switch} from "react-router-dom";
 import React from "react";
-import {NavLink, Route, BrowserRouter as Router} from "react-router-dom";
-import SignUp from "./SignUp";
-import Login from "./Login";
+import SignUp from "./Auths/SignUp";
+import Login from "./Auths/Login";
 
 const Home = () => {
-
     return (
-        <Router>
-            <div>
-                <h1>Welcome to Hello Books</h1>
+        <div>
+            <h1>Welcome to Hello Books</h1>
+            <NavLink to={`/signup`}>Sign Up</NavLink>
+            <NavLink to={`/login`}>Login</NavLink>
+
+            <Switch>
 
                 <Route
-                    exact
-                    path={"/"}
-                    render={() => (
-                        <h2>Please sign up or login</h2>
-                    )}/>
-
-                <ul>
-                    <li><NavLink to={"/signup"}>Sign Up</NavLink></li>
-                    <li><NavLink to={"/login"}>Login</NavLink></li>
-                </ul>
-
-
+                    path={`/signup`}
+                    component={SignUp}/>
                 <Route
-                    path={"/signup"}
-                    render={() => <SignUp/>}/>
-
-                <Route
-                    path={"/login"}
+                    path={`/login`}
                     component={Login}/>
-            </div>
+            </Switch>
 
-        </Router>
+        </div>
     );
-
 };
 
 export default Home;
