@@ -5,11 +5,12 @@ import UserDashboard from "./UserComps/UserDashboard";
 
 
 class App extends Component {
+    state = {};
 
     render() {
         return (
             <Router>
-                <div>
+                <div className={"container"}>
 
                     <Switch>
                         <Route

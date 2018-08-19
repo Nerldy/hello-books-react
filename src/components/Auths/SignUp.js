@@ -11,7 +11,7 @@ class SignUp extends Component {
         email: "",
         password: "",
         confirm_password: "",
-        isRegistered: false
+        isLogged: false
     };
 
     handleChange = e => {
@@ -24,6 +24,7 @@ class SignUp extends Component {
         //handle form submission
         e.preventDefault();
 
+        // data to be sent in the API
         const data = {
             username: this.state.username,
             email: this.state.email,
@@ -36,20 +37,24 @@ class SignUp extends Component {
             data
             )
             .then(res => {
-                if (res.data.status === "success") {
-                    this.setState({isRegistered: true});
-                }
+                // save authorization to the local storage
+                localStorage.setItem("auth_token", res.data.auth_token);
+
+                // Add Authorization to the header
+                API.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("auth_token");
+                this.setState({isLogged: true});
+
             })
             .catch(err => {
                 console.log(err.response);
+                console.log("oooo");
                 return <Redirect to={"/signup"}/>;
             });
     };
 
     render() {
-
-        if (this.state.isRegistered) {
-            return <Redirect to={"user/dashboard"}/>;
+        if (this.state.isLogged) {
+            return <Redirect to={"/dashboard"}/>;
         }
 
         return (
