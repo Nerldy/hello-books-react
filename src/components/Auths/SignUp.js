@@ -63,7 +63,7 @@ class SignUp extends Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Username:
+                        Username
                         <input
                             type="text"
                             name="username"
@@ -72,7 +72,7 @@ class SignUp extends Component {
                     </label>
 
                     <label>
-                        Email:
+                        Email
                         <input
                             type="email"
                             name="email"
@@ -81,7 +81,7 @@ class SignUp extends Component {
                     </label>
 
                     <label>
-                        Password:
+                        Password
                         <input
                             type="password"
                             name="password"
@@ -90,7 +90,7 @@ class SignUp extends Component {
                     </label>
 
                     <label>
-                        Repeat Password:
+                        Repeat Password
                         <input
                             type="password"
                             name="confirm_password"
