@@ -8,7 +8,8 @@ class Login extends Component {
     state = {
         username: "",
         password: "",
-        errorMessage: ""
+        errorMessage: "",
+        usernameField: ""
     };
 
     handleChange = e => {
@@ -56,8 +57,15 @@ class Login extends Component {
     };
 
 
+    /*
+    ============================================================
+        Render
+
+        */
+
     render() {
         let errorMessage;
+
 
         if (this.state.errorMessage) {
             // if error in submission it creates error message notification in view
@@ -75,7 +83,10 @@ class Login extends Component {
         return (
             <div>
                 <h2>Login</h2>
+
+                {/*show error pop-up*/}
                 {errorMessage}
+
                 <form onSubmit={this.handleSubmit}>
                     <div className={"field"}>
                         <label className={"label"}>
@@ -89,21 +100,26 @@ class Login extends Component {
                                 value={this.state.username}
                                 onChange={this.handleChange}/>
                             <span className="icon is-small is-left">
-                                <i className="fas fa-user"></i>
+                                <i className="fas fa-user">{null}</i>
                             </span>
                         </div>
-                        {}
                     </div>
 
-                    <label>
-                        Password:
-                        <input
-                            type="password"
-                            name="password"
-                            value={this.state.password}
-                            onChange={this.handleChange}/>
+                    <div className="field">
+                        <label className="label">Password</label>
 
-                    </label>
+                        <div className="control has-icons-left has-icons-right">
+                            <input
+                                type="password"
+                                name="password"
+                                className={"input"}
+                                value={this.state.password}
+                                onChange={this.handleChange}/>
+                            <span className="icon is-small is-left">
+                                <i className="fas fa-lock">{null}</i>
+                            </span>
+                        </div>
+                    </div>
 
                     <button type="submit">Login</button>
 
