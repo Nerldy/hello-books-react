@@ -5,7 +5,8 @@ import BookCard from "../BookCard";
 class UserBooks extends Component {
 
     state = {
-        books: []
+        books: [],
+        borrowBookId: null
     };
 
     componentDidMount() {
@@ -21,6 +22,12 @@ class UserBooks extends Component {
         });
     }
 
+    handleBorrowBook = id => {
+       /* handles borrowing a book
+        it returns the book id*/
+        this.setState({borrowBookId: id});
+        console.log(`Borrow this book id ${id}`);
+    };
 
     render() {
         let apiBooks; // book card container
@@ -31,7 +38,9 @@ class UserBooks extends Component {
                 return <BookCard
                     key={book.id}
                     title={book.title}
-                    isbn={book.isbn}/>;
+                    isbn={book.isbn}
+                    is_borrowed={book.is_borrowed}
+                    clickBorrow={() => this.handleBorrowBook(book.id)}/>;
             });
         }
         return (

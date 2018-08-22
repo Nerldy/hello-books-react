@@ -3,8 +3,11 @@ import React, {Fragment} from "react";
 // renders single book
 const BookCard = props => {
 
-    return (
-        <Fragment>
+    let booksNotBorrowed;
+
+    if (!props.is_borrowed) {
+        // check for books not borrowed
+        booksNotBorrowed = (
             <div className="bookCard">
                 <h3>{props.title}</h3>
                 <p>
@@ -13,8 +16,17 @@ const BookCard = props => {
                 </span>
                     {props.isbn}
                 </p>
-            </div>
 
+                <footer>
+                    <p onClick={props.clickBorrow}>Borrow this book</p>
+                </footer>
+            </div>
+        );
+    }
+
+    return (
+        <Fragment>
+            {booksNotBorrowed}
         </Fragment>
     );
 };
