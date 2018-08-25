@@ -43,7 +43,6 @@ class UserBooks extends Component {
 
     render() {
         let apiBooks; // book card container
-        let borrowMessage; // borrow message container
 
         // if books are available return each book details
         if (this.state.books) {
@@ -65,7 +64,6 @@ class UserBooks extends Component {
         return (
             <div>
                 <h2>Books</h2>
-                {borrowMessage}
 
                 {/*render each book or show no book*/}
                 {apiBooks || <h3>No books</h3>}
