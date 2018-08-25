@@ -18,7 +18,7 @@ const BookCard = props => {
                 </p>
 
                 <footer>
-                    <p onClick={props.clickBorrow}>Borrow this book</p>
+                    <a onClick={props.clickBorrow} className="button">Borrow this book</a>
                 </footer>
             </div>
         );

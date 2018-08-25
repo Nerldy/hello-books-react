@@ -47,7 +47,6 @@ class UserDashboard extends Component {
                     </NavLink>
                     <button onClick={this.handleLogout}>Logout</button>
                 </div>
-                <h2>User Dashboard</h2>
 
                 {/*Navigation routes below*/}
 
