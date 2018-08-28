@@ -90,7 +90,7 @@ class SignUp extends Component {
             .catch(err => {
                 if (err.response.data.status === "error") {
                     // check if password is in error message
-                    if (err.response.data.message.includes("password")) {
+                    if (err.response.data.message.includes('password')) {
                         this.setState({
                             errorMessage: err.response.data.message,
                             password: "",
@@ -160,6 +160,7 @@ class SignUp extends Component {
                         <label className="label">Username</label>
                         <div className="control has-icons-left has-icons-right">
                             <input
+                                required
                                 type="text"
                                 name="username"
                                 className="input"
@@ -175,6 +176,7 @@ class SignUp extends Component {
                         <label className="label">Email</label>
                         <div className="control has-icons-left has-icons-right">
                             <input
+                                required
                                 type="email"
                                 name="email"
                                 className={emailErrInputClass.join(" ")}
@@ -193,6 +195,7 @@ class SignUp extends Component {
 
                         <div className="control has-icons-left has-icons-right">
                             <input
+                                required
                                 type="password"
                                 name="password"
                                 className={inputClass.join(" ")}
@@ -214,6 +217,7 @@ class SignUp extends Component {
 
                         <div className="control has-icons-left has-icons-right">
                             <input
+                                required
                                 type="password"
                                 name="confirm_password"
                                 className="input"

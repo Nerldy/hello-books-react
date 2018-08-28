@@ -94,6 +94,7 @@ class Login extends Component {
                         </label>
                         <div className={"control has-icons-left has-icons-right"}>
                             <input
+                                required
                                 type="text"
                                 name="username"
                                 className={"input"}
@@ -110,6 +111,7 @@ class Login extends Component {
 
                         <div className="control has-icons-left has-icons-right">
                             <input
+                                required
                                 type="password"
                                 name="password"
                                 className={"input"}

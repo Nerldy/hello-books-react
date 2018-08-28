@@ -33,12 +33,21 @@ class UserBooks extends Component {
     handleBorrowBook = (id, bookTitle) => {
         /* handles borrowing a book
          it returns the book id*/
-        this.setState({
-            borrowBookId: id,
-            borrowMessage: bookTitle,
-            prompter: true
+
+        API.post(`users/books/${id}`)
+            .then(res => {
+                this.setState(currentState => (
+                    {
+                        books: currentState.books.filter(book => book.id !== id),
+                        borrowMessage: `You have borrowed the book titled ${bookTitle}. It has now
+                been added to your library`
+                    }
+                ));
+            }).catch(err => {
+            this.setState({
+                borrowMessage: `The book titled ${bookTitle} does not exist.`
+            });
         });
-        console.log(`You borrowed ${bookTitle}. `);
     };
 
     render() {
@@ -58,8 +67,7 @@ class UserBooks extends Component {
 
         // if book borrow message is available, sho user
         if (this.state.borrowMessage) {
-            alert(`You have borrowed the book titled ${this.state.borrowMessage}. It has now
-                been added to your library`)
+            alert(`${this.state.borrowMessage}`);
         }
         return (
             <div>
