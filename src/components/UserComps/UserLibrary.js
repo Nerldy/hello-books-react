@@ -4,7 +4,9 @@ import API from "../../utils/api";
 class UserLibrary extends Component {
     state = {
         borrowedBooks: [],
-        borrowMessage: null
+        borrowMessage: null,
+        pageNum: 1
+
     };
 
     componentDidMount() {
@@ -13,8 +15,8 @@ class UserLibrary extends Component {
         API.defaults.headers.common["Authorization"] =
             "Bearer " + localStorage.getItem("auth_token");
 
-        // TODO: check how todo url params
-        API.get(`/users/books?limit=3&page=1&returned=false`)
+        // TODO: integrate pagination
+        API.get(`/users/books?limit=3&page=${this.state.pageNum}&returned=false`)
             .then(res => {
                 console.log(res.data);
                 const borrowedBooks = res.data.books;
