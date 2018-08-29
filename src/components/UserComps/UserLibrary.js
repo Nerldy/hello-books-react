@@ -17,7 +17,7 @@ class UserLibrary extends Component {
         API.defaults.headers.common["Authorization"] =
             "Bearer " + localStorage.getItem("auth_token");
 
-        this.handleChangePageNum();
+        this.fetchBooks();
     }
 
     fetchBooks = () => {
@@ -34,27 +34,21 @@ class UserLibrary extends Component {
             }).catch(err => console.log(err.response));
     };
 
-    handleChangePageNum = () => {
-        this.fetchBooks();
-
-    };
-
     handleNextPage = () => {
-        this.setState(currentState => currentState.pageNum++);
-        this.fetchBooks();
+        // goes to next page
+        this.setState(currentState => currentState.pageNum++, () => this.fetchBooks());
 
     };
 
     handlePrevPage = () => {
-        this.setState(currentState => currentState.pageNum--);
-        this.fetchBooks();
+        // goes to prev page
+        this.setState(currentState => currentState.pageNum--, () => this.fetchBooks());
     };
 
     handleReturnBook = (id, bookTitle) => {
         // first notify user if they want to return the book
         swal({
             title: `Are you sure you want to return ${bookTitle}?`,
-            text: "You clicked the button!",
             icon: "warning",
             buttons: true,
             dangerMode: true
@@ -105,11 +99,6 @@ class UserLibrary extends Component {
                 </div>
             ));
         }
-
-        // if book borrow message is available, sho user
-        // if (this.state.borrowMessage) {
-        //     alert(`${this.state.borrowMessage}`);
-        // }
 
         return (
             <div>
