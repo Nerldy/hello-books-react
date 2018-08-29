@@ -1,12 +1,14 @@
 import React, {Component} from "react";
 import API from "../../utils/api";
+import swal from "sweetalert";
 
 class UserLibrary extends Component {
     state = {
         borrowedBooks: [],
         borrowMessage: null,
-        pageNum: 1
-
+        pageNum: 1,
+        has_next: false,
+        has_prev: false
     };
 
     componentDidMount() {
@@ -15,26 +17,67 @@ class UserLibrary extends Component {
         API.defaults.headers.common["Authorization"] =
             "Bearer " + localStorage.getItem("auth_token");
 
+        this.handleChangePageNum();
+    }
+
+    fetchBooks = () => {
         // TODO: integrate pagination
         API.get(`/users/books?limit=3&page=${this.state.pageNum}&returned=false`)
             .then(res => {
                 console.log(res.data);
                 const borrowedBooks = res.data.books;
                 this.setState({
-                    borrowedBooks
+                    borrowedBooks,
+                    has_next: res.data.has_next,
+                    has_prev: res.data.has_prev
                 });
-            });
-    }
+            }).catch(err => console.log(err.response));
+    };
+
+    handleChangePageNum = () => {
+        this.fetchBooks();
+
+    };
+
+    handleNextPage = () => {
+        this.setState(currentState => currentState.pageNum++);
+        this.fetchBooks();
+
+    };
+
+    handlePrevPage = () => {
+        this.setState(currentState => currentState.pageNum--);
+        this.fetchBooks();
+    };
 
     handleReturnBook = (id, bookTitle) => {
+        // first notify user if they want to return the book
+        swal({
+            title: `Are you sure you want to return ${bookTitle}?`,
+            text: "You clicked the button!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+        })
+            .then(willReturn => {
+                if (willReturn) {
+                    API.put(`users/books/${id}`)
+                        .then(res => {
 
-        API.put(`users/books/${id}`)
-            .then(res => {
-                this.setState(currentState => ({
-                    borrowedBooks: currentState.borrowedBooks.filter(book => book.id !== id),
-                    borrowMessage: `You have returned the book titled ${bookTitle}.`
-                }));
+                            this.setState(currentState => ({
+                                borrowedBooks: currentState.borrowedBooks.filter(book => book.id !== id),
+                                borrowMessage: `You have returned the book titled ${bookTitle}.`
+                            }));
+
+                            swal(`You returned ${bookTitle}`, {
+                                icon: "success",
+                            });
+                        });
+                } else {
+                    swal(`You still own ${bookTitle}`);
+                }
             });
+
 
     };
 
@@ -64,16 +107,17 @@ class UserLibrary extends Component {
         }
 
         // if book borrow message is available, sho user
-        if (this.state.borrowMessage) {
-            alert(`${this.state.borrowMessage}`);
-        }
+        // if (this.state.borrowMessage) {
+        //     alert(`${this.state.borrowMessage}`);
+        // }
 
         return (
             <div>
                 <h2>Borrowed books</h2>
 
                 {booksNotReturned || <h3>No books currently borrowed</h3>}
-                <p>Next</p>
+                {this.state.has_next ? <p onClick={this.handleNextPage}>Next</p> : null}
+                {this.state.has_prev ? <p onClick={this.handlePrevPage}>Prev</p> : null}
             </div>
         );
     }
