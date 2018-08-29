@@ -17,6 +17,7 @@ class UserLibrary extends Component {
         API.defaults.headers.common["Authorization"] =
             "Bearer " + localStorage.getItem("auth_token");
 
+        // fetch books from the API
         this.fetchBooks();
     }
 
