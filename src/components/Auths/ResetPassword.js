@@ -1,12 +1,11 @@
 import React, {Component} from "react";
 import {validateEmail} from "../../utils/helperFuncs";
 import API from "../../utils/api";
-import {Redirect} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 class ResetPassword extends Component {
 
     state = {
-        isLogged: false,
         old_password: "",
         new_password: "",
         notifyPasswordLength: false,
@@ -16,7 +15,7 @@ class ResetPassword extends Component {
         errorMessage: ""
     };
 
-    componentDidMount(){
+    componentDidMount() {
         // Add Authorization to the header
         API.defaults.headers.common["Authorization"] =
             "Bearer " + localStorage.getItem("auth_token");
@@ -61,6 +60,7 @@ class ResetPassword extends Component {
             .then(res => {
                 // save authorization to the local storage
                 localStorage.clear();
+                this.props.history.push("/login");
 
             })
             .catch(err => {
@@ -72,22 +72,18 @@ class ResetPassword extends Component {
                             errorMessage: err.response.data.message,
                             password: "",
                             confirm_password: "",
-                            notifyPasswordLength: <p className="help is-danger">Password error</p>,
+                            notifyPasswordLength: <p className="help is-danger">{err.response.data.message}</p>,
                             hasTyped: true
                         });
                     }
                 }
-                return <Redirect to={"/signup"}/>;
+
             });
     };
 
     render() {
+        let errorMessage;
         let inputClass = ["input"]; // base input class
-
-        // if logged in, redirect to dashboard
-        if (this.state.isLogged) {
-            return <Redirect to={"/dashboard"}/>;
-        }
 
         // add success class name to input
         if (this.state.isOkay) {
@@ -160,4 +156,4 @@ class ResetPassword extends Component {
     }
 }
 
-export default ResetPassword;
+export default withRouter(ResetPassword);
