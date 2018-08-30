@@ -30,20 +30,9 @@ class UserDashboard extends Component {
         }
 
         // if is_admin exists and true in the local storage, show admin navigation
-        if (localStorage.getItem("is_admin") === "true") {
-            adminAddBook = (
-
-                <div className="modal is-active">
-                    <div className="modal-background">{null}</div>
-                    <div className="modal-content">
-                        <p>Say Word</p>
-                    </div>
-                    <button
-                        className="modal-close is-large"
-                        aria-label="close">{null}</button>
-                </div>
-            );
-        }
+        // if (localStorage.getItem("is_admin") === "true") {
+        //     // adminAddBook = ();
+        // }
 
         return localStorage.getItem("auth_token") ? (
             <div>
