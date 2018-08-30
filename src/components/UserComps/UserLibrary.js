@@ -22,7 +22,6 @@ class UserLibrary extends Component {
     }
 
     fetchBooks = () => {
-        // TODO: integrate pagination
         API.get(`/users/books?limit=3&page=${this.state.pageNum}&returned=false`)
             .then(res => {
                 console.log(res.data);
