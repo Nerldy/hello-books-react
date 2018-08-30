@@ -62,6 +62,11 @@ class SignUp extends Component {
 
     };
 
+    handleDeleteNotification = () => {
+        // deletes notification from the view
+        this.setState({errorMessage: ""});
+    };
+
     handleSubmit = e => {
         //handle form submission
         e.preventDefault();
@@ -90,6 +95,7 @@ class SignUp extends Component {
 
             })
             .catch(err => {
+                console.log(err.response);
                 if (err.response.data.status === "error") {
                     // check if password is in error message
                     if (err.response.data.message.includes("password")) {
@@ -102,6 +108,8 @@ class SignUp extends Component {
                         });
                     }
                 }
+
+                this.setState({errorMessage: err.response.data.message});
                 return <Redirect to={"/signup"}/>;
             });
     };
@@ -152,8 +160,6 @@ class SignUp extends Component {
 
         return (
             <div>
-                <h2>Sign Up</h2>
-
                 {/*show error pop-up*/}
                 {errorMessage}
 
@@ -239,7 +245,8 @@ class SignUp extends Component {
 
                 </form>
             </div>
-        );
+        )
+            ;
     }
 }
 

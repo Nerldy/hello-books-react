@@ -35,63 +35,78 @@ class UserDashboard extends Component {
         // }
 
         return localStorage.getItem("auth_token") ? (
-            <div>
-                <div>
+            <div className="row">
+                <div className="col-12 col-md-2">
+                    <nav className="nav flex-column">
 
-                    {/*Navigation links for the dashboard*/}
-                    <NavLink to={`${this.props.match.url}`}>Home</NavLink>
-                    <NavLink to={`${this.props.match.url}/books`}>
-                        Catalog
-                    </NavLink>
-                    <NavLink to={`${this.props.match.url}/borrowed-books`}>
-                        My Library
-                    </NavLink>
-                    <NavLink to={`${this.props.match.url}/history`}>
-                        Archives
-                    </NavLink>
-                    <NavLink to={`${this.props.match.url}/settings`}>
-                        Settings
-                    </NavLink>
-                    <button onClick={this.handleLogout}>Logout</button>
+                        {/*Navigation links for the dashboard*/}
+                        <NavLink
+                            to={`${this.props.match.url}`}
+                            activeClassName="active">Home</NavLink>
+                        <NavLink
+                            to={`${this.props.match.url}/books`}
+                            activeClassName="active">
+                            Catalog
+                        </NavLink>
+                        <NavLink
+                            to={`${this.props.match.url}/borrowed-books`}
+                            activeClassName="active">
+                            My Library
+                        </NavLink>
+                        <NavLink
+                            to={`${this.props.match.url}/history`}
+                            activeClassName="active">
+                            Archives
+                        </NavLink>
+                        <NavLink
+                            to={`${this.props.match.url}/settings`}
+                            activeClassName="active">
+                            Settings
+                        </NavLink>
+                        <button onClick={this.handleLogout}>Logout</button>
+                    </nav>
                 </div>
 
 
                 {/*admin feature*/}
                 {adminAddBook}
 
+                <div className="col-12 col-md-10">
 
-                {/*Navigation routes below*/}
+                    {/*Navigation routes below*/}
 
-                {/*route to user home*/}
-                <Route
-                    path={`${this.props.match.url}`}
-                    exact
-                    component={UserHome}
-                />
+                    {/*route to user home*/}
+                    <Route
+                        path={`${this.props.match.url}`}
+                        exact
+                        component={UserHome}
+                    />
 
-                {/*route for user to get all books*/}
-                <Route
-                    path={`${this.props.match.url}/books`}
-                    component={UserBooks}
-                />
+                    {/*route for user to get all books*/}
+                    <Route
+                        path={`${this.props.match.url}/books`}
+                        component={UserBooks}
+                    />
 
-                {/*route for user to view books they borrowed*/}
-                <Route
-                    path={`${this.props.match.url}/borrowed-books`}
-                    component={UserLibrary}
-                />
+                    {/*route for user to view books they borrowed*/}
+                    <Route
+                        path={`${this.props.match.url}/borrowed-books`}
+                        component={UserLibrary}
+                    />
 
-                {/*route for user to view history of borrowed books*/}
-                <Route
-                    path={`${this.props.match.url}/history`}
-                    component={UserBookHistory}
-                />
+                    {/*route for user to view history of borrowed books*/}
+                    <Route
+                        path={`${this.props.match.url}/history`}
+                        component={UserBookHistory}
+                    />
 
-                {/*route for user to see account settings*/}
-                <Route
-                    path={`${this.props.match.url}/settings`}
-                    component={UserSettings}
-                />
+                    {/*route for user to see account settings*/}
+                    <Route
+                        path={`${this.props.match.url}/settings`}
+                        component={UserSettings}
+                    />
+                </div>
+
 
                 <div/>
             </div>

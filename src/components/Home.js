@@ -14,32 +14,36 @@ const Home = () => {
         return <Redirect to="/dashboard"/>;
     }
     return (
-        <div className={"columns is-3"}>
-            <div className="column">
-                <header className={"hero"}>
+        <div className="container-fluid">
+            <div className="row">
+                <header className="col">
                     <h1 className={"title"}>Welcome to Hello Books</h1>
                 </header>
-                <div className="columns">
-                    <aside className="column is-one-fifth menu">
-                        <div className="menu-list">
-                            <NavLink to={`/signup`}>Sign Up</NavLink>
-                            <NavLink to={`/login`}>Login</NavLink>
-                        </div>
-                    </aside>
+            </div>
+            <div className="row justify-content-md-center">
+                <aside className="col-12 col-md-4 list-group">
+                    <NavLink
+                        to={`/signup`}
+                        activeClassName="active"
+                        className="list-group-item list-group-item-action">Sign Up</NavLink>
+                    <NavLink
+                        to={`/login`}
+                        activeClassName="active"
+                        className="list-group-item list-group-item-action">Login</NavLink>
+                </aside>
 
-                    <div className="column">
+                <div className="col-12 col-md-8">
+                    <Switch>
 
-                        <Switch>
 
-                            <Route
-                                path={`/signup`}
-                                component={SignUp}/>
-                            <Route
-                                path={`/login`}
-                                component={Login}/>
-                        </Switch>
-                    </div>
+                        <Route
+                            path={`/signup`}
+                            component={SignUp}/>
+                        <Route
+                            path={`/login`}
+                            component={Login}/>
 
+                    </Switch>
                 </div>
 
 

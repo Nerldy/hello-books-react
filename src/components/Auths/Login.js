@@ -31,7 +31,6 @@ class Login extends Component {
         API.post("/auth/login", data)
             .then(res => {
                 localStorage.clear();
-                console.log(res.data);
 
                 // save authorization to the local storage
                 localStorage.setItem("auth_token", res.data.auth_token);
@@ -85,8 +84,6 @@ class Login extends Component {
 
         return (
             <div>
-                <h2>Login</h2>
-
                 {/*show error pop-up*/}
                 {errorMessage}
 
