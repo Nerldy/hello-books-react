@@ -1,10 +1,10 @@
 import React from "react";
 
-const UserHome = () => {
+const UserHome = props => {
 
     return (
         <div>
-            <h2>Welcome home</h2>
+            <h2>Welcome home, {localStorage.getItem('username')}</h2>
         </div>
     );
 
