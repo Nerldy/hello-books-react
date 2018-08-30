@@ -82,6 +82,8 @@ class SignUp extends Component {
                 // save authorization to the local storage
                 localStorage.setItem("auth_token", res.data.auth_token);
 
+                localStorage.setItem("username", this.state.username);
+
                 // Add Authorization to the header
                 API.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("auth_token");
                 this.setState({isLogged: true});
@@ -90,7 +92,7 @@ class SignUp extends Component {
             .catch(err => {
                 if (err.response.data.status === "error") {
                     // check if password is in error message
-                    if (err.response.data.message.includes('password')) {
+                    if (err.response.data.message.includes("password")) {
                         this.setState({
                             errorMessage: err.response.data.message,
                             password: "",

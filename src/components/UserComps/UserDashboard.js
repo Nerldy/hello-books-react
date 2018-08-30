@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import {NavLink, Route, Redirect} from "react-router-dom";
 import API from "../../utils/api";
 import UserHome from "./UserHome";
@@ -23,10 +23,28 @@ class UserDashboard extends Component {
     };
 
     render() {
+        let adminAddBook;
         // if is logged out, redirect user to the login page
         if (this.state.isLoggedOut) {
             return <Redirect to={"/login"}/>;
         }
+
+        // if is_admin exists and true in the local storage, show admin navigation
+        if (localStorage.getItem("is_admin") === "true") {
+            adminAddBook = (
+
+                <div className="modal is-active">
+                    <div className="modal-background">{null}</div>
+                    <div className="modal-content">
+                        <p>Say Word</p>
+                    </div>
+                    <button
+                        className="modal-close is-large"
+                        aria-label="close">{null}</button>
+                </div>
+            );
+        }
+
         return localStorage.getItem("auth_token") ? (
             <div>
                 <div>
@@ -47,6 +65,11 @@ class UserDashboard extends Component {
                     </NavLink>
                     <button onClick={this.handleLogout}>Logout</button>
                 </div>
+
+
+                {/*admin feature*/}
+                {adminAddBook}
+
 
                 {/*Navigation routes below*/}
 

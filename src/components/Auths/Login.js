@@ -8,8 +8,7 @@ class Login extends Component {
     state = {
         username: "",
         password: "",
-        errorMessage: "",
-        usernameField: ""
+        errorMessage: ""
     };
 
     handleChange = e => {
@@ -31,10 +30,14 @@ class Login extends Component {
         // post data to API via axios
         API.post("/auth/login", data)
             .then(res => {
-                localStorage.removeItem("auth_token");
+                localStorage.clear();
+                console.log(res.data);
 
                 // save authorization to the local storage
                 localStorage.setItem("auth_token", res.data.auth_token);
+
+                localStorage.setItem("is_admin", res.data.is_admin);
+                localStorage.setItem("username", this.state.username);
 
                 // Add Authorization to the header
                 API.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("auth_token");
