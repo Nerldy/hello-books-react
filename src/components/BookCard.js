@@ -3,6 +3,17 @@ import React, {Fragment} from "react";
 // renders single book
 const BookCard = props => {
 
+    let adminButtons;
+
+    if (localStorage.getItem("is_admin") === "true") {
+        adminButtons = (
+            <div>
+                <i className="fas fa-edit">{null}</i>
+                <i className="fas fa-trash-alt">{null}</i>
+            </div>
+        );
+    }
+
     let booksNotBorrowed;
 
     if (!props.is_borrowed) {
@@ -18,7 +29,10 @@ const BookCard = props => {
                 </p>
 
                 <footer>
-                    <a onClick={props.clickBorrow} className="button">Borrow this book</a>
+                    <a
+                        onClick={props.clickBorrow}
+                        className="button">Borrow this book</a>
+                    {adminButtons}
                 </footer>
             </div>
         );

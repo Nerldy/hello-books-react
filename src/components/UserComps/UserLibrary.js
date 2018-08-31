@@ -24,7 +24,6 @@ class UserLibrary extends Component {
     fetchBooks = () => {
         API.get(`/users/books?limit=3&page=${this.state.pageNum}&returned=false`)
             .then(res => {
-                console.log(res.data);
                 const borrowedBooks = res.data.books;
                 this.setState({
                     borrowedBooks,

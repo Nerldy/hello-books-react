@@ -29,11 +29,6 @@ class UserDashboard extends Component {
             return <Redirect to={"/login"}/>;
         }
 
-        // if is_admin exists and true in the local storage, show admin navigation
-        // if (localStorage.getItem("is_admin") === "true") {
-        //     // adminAddBook = ();
-        // }
-
         return localStorage.getItem("auth_token") ? (
             <div className="row">
                 <div className="col-12 col-md-2">
