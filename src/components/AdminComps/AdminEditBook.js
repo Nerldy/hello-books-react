@@ -6,8 +6,6 @@ import {withRouter} from "react-router-dom";
 
 class AdminEditBook extends Component {
     state = {
-        title: this.props.title,
-        id: this.props.bookId,
         modal: false,
         notifyISBNlength: null,
         hasTyped: false,
@@ -30,11 +28,6 @@ class AdminEditBook extends Component {
         });
     };
 
-    handleChange = e => {
-        // handles form inputs
-        this.setState({[e.target.name]: e.target.value});
-
-    };
 
     handleEditBook = id => e => {
         // edit book
@@ -42,7 +35,7 @@ class AdminEditBook extends Component {
         e.preventDefault();
 
         const data = {
-            title: this.state.title
+            title: this.props.title
         };
         API.put(`books/${id}`, data)
             .then(res => {
@@ -65,7 +58,7 @@ class AdminEditBook extends Component {
                     className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Edit Book</ModalHeader>
                     <ModalBody>
-                        <form onSubmit={this.handleEditBook(this.state.id)}>
+                        <form onSubmit={this.handleEditBook(this.props.bookId)}>
                             <div className="field">
                                 <label className="label">Title</label>
                                 <div className="control has-icons-left has-icons-right">
@@ -74,8 +67,8 @@ class AdminEditBook extends Component {
                                         type="text"
                                         name="title"
                                         className="input is-rounded"
-                                        value={this.state.title}
-                                        onChange={this.handleChange}/>
+                                        value={this.props.title}
+                                        onChange={this.props.changeTitle}/>
                                     <span className="icon is-small is-left">
                                <i className="fas fa-book">{null}</i>
                            </span>

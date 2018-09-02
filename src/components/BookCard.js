@@ -11,10 +11,6 @@ class BookCard extends Component {
         this.setState({[e.target.name]: e.target.value});
     };
 
-    componentWillReceiveProps(props) {
-        this.setState(props);
-    }
-
     render() {
         let adminButtons;
 
@@ -38,7 +34,7 @@ class BookCard extends Component {
             // check for books not borrowed
             booksNotBorrowed = (
                 <div className="bookCard">
-                    <h3>{this.props.title}</h3>
+                    <h3>{this.state.title}</h3>
                     <p>
                 <span>
                     ISBN No:
