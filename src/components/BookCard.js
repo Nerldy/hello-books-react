@@ -1,48 +1,67 @@
-import React, {Fragment} from "react";
+import React, {Fragment, Component} from "react";
+import AdminEditBook from "./AdminComps/AdminEditBook";
 
-// renders single book
-const BookCard = props => {
+// renders single book card
+class BookCard extends Component {
+    state = {
+        title: this.props.title
+    };
 
-    let adminButtons;
+    onChangeTitle = e => {
+        this.setState({[e.target.name]: e.target.value});
+    };
 
-    if (localStorage.getItem("is_admin") === "true") {
-        adminButtons = (
-            <div>
-                <i className="fas fa-edit">{null}</i>
-                <i className="fas fa-trash-alt">{null}</i>
-            </div>
-        );
+    componentWillReceiveProps(props) {
+        this.setState(props);
     }
 
-    let booksNotBorrowed;
+    render() {
+        let adminButtons;
 
-    if (!props.is_borrowed) {
-        // check for books not borrowed
-        booksNotBorrowed = (
-            <div className="bookCard">
-                <h3>{props.title}</h3>
-                <p>
+        if (localStorage.getItem("is_admin") === "true") {
+            adminButtons = (
+                <div>
+                    <AdminEditBook
+                        title={this.state.title}
+                        bookId={this.props.bookId}
+                        changeTitle={this.onChangeTitle}/>
+                    <div onClick={this.props.handleDeleteBook}>
+                        <i className="fas fa-trash-alt">{null}</i>
+                    </div>
+                </div>
+            );
+        }
+
+        let booksNotBorrowed;
+
+        if (!this.props.is_borrowed) {
+            // check for books not borrowed
+            booksNotBorrowed = (
+                <div className="bookCard">
+                    <h3>{this.props.title}</h3>
+                    <p>
                 <span>
                     ISBN No:
                 </span>
-                    {props.isbn}
-                </p>
+                        {this.props.isbn}
+                    </p>
 
-                <footer>
-                    <a
-                        onClick={props.clickBorrow}
-                        className="button">Borrow this book</a>
-                    {adminButtons}
-                </footer>
-            </div>
+                    <footer>
+                        <a
+                            onClick={this.props.clickBorrow}
+                            className="button">Borrow this book</a>
+                        {adminButtons}
+                    </footer>
+                </div>
+            );
+        }
+
+        return (
+            <Fragment>
+                {booksNotBorrowed}
+            </Fragment>
         );
     }
-
-    return (
-        <Fragment>
-            {booksNotBorrowed}
-        </Fragment>
-    );
-};
+}
 
 export default BookCard;

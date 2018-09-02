@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import API from "../../utils/api";
 import BookCard from "../BookCard";
 import {Redirect} from "react-router-dom";
+import swal from "sweetalert";
 
 class UserBooks extends Component {
 
@@ -29,6 +30,36 @@ class UserBooks extends Component {
             }
         });
     }
+
+
+    handleDeleteBook = id => {
+        // handles book deleting
+        console.log(`delete book ${id}`);
+        swal({
+            title: "Are you sure you want to delete this book?",
+            text: "Once deleted, you will not be able to recover this book from the database",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    API.delete(`books/${id}`)
+                        .then(res => {
+                            this.setState(currentState => (
+                                {
+                                    books: currentState.books.filter(book => book.id !== id)
+                                }
+                            ));
+                            swal("Poof! Book has been deleted!", {
+                                icon: "success",
+                            });
+                        }).catch(err => console.log(err.response));
+                } else {
+                    swal("Book is safe!");
+                }
+            }).catch(err => console.log(err.response));
+    };
 
     handleBorrowBook = (id, bookTitle) => {
         /* handles borrowing a book
@@ -61,7 +92,9 @@ class UserBooks extends Component {
                     title={book.title}
                     isbn={book.isbn}
                     is_borrowed={book.is_borrowed}
-                    clickBorrow={() => this.handleBorrowBook(book.id, book.title)}/>;
+                    clickBorrow={() => this.handleBorrowBook(book.id, book.title)}
+                    handleDeleteBook={() => this.handleDeleteBook(book.id)}
+                    bookId={book.id}/>;
             });
         }
 

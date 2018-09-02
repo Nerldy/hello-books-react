@@ -56,10 +56,9 @@ class UserLibrary extends Component {
                 if (willReturn) {
                     API.put(`users/books/${id}`)
                         .then(res => {
-
+                            // return borrowed books
                             this.setState(currentState => ({
-                                borrowedBooks: currentState.borrowedBooks.filter(book => book.id !== id),
-                                borrowMessage: `You have returned the book titled ${bookTitle}.`
+                                borrowedBooks: currentState.borrowedBooks.filter(book => book.id !== id)
                             }));
 
                             swal(`You returned ${bookTitle}`, {
@@ -67,7 +66,7 @@ class UserLibrary extends Component {
                             });
                         });
                 } else {
-                    swal(`You still own ${bookTitle}`);
+                    swal(`${bookTitle} was not returned!`);
                 }
             });
 

@@ -15,12 +15,8 @@ const Home = () => {
     }
     return (
         <div className="container-fluid">
-            <div className="row">
-                <header className="col">
-                    <h1 className={"title"}>Welcome to Hello Books</h1>
-                </header>
-            </div>
-            <div className="row justify-content-md-center">
+            <div
+                className="row align-items-center">
                 <aside className="col-12 col-md-4 list-group">
                     <NavLink
                         to={`/signup`}
@@ -34,7 +30,19 @@ const Home = () => {
 
                 <div className="col-12 col-md-8">
                     <Switch>
-
+                        <Route
+                            exact
+                            path={"/"}
+                            render={() => {
+                                return (
+                                    <div>
+                                        <header>
+                                            <h1>Welcome to Hello Books</h1>
+                                            <p>Please Sign Up or Login</p>
+                                        </header>
+                                    </div>
+                                );
+                            }}/>
 
                         <Route
                             path={`/signup`}
