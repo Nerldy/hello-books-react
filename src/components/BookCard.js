@@ -1,5 +1,7 @@
 import React, {Fragment, Component} from "react";
 import AdminEditBook from "./AdminComps/AdminEditBook";
+import titleCase from "title-case";
+
 
 // renders single book card
 class BookCard extends Component {
@@ -34,7 +36,7 @@ class BookCard extends Component {
             // check for books not borrowed
             booksNotBorrowed = (
                 <div className="bookCard">
-                    <h3>{this.state.title}</h3>
+                    <h3>{titleCase(this.state.title)}</h3>
                     <p>
                 <span>
                     ISBN No:

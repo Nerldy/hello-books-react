@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import API from "../../utils/api";
 import swal from "sweetalert";
+import titleCase from 'title-case'
 
 class UserLibrary extends Component {
     state = {
@@ -81,7 +82,7 @@ class UserLibrary extends Component {
                 <div
                     className="bookCard"
                     key={book.id}>
-                    <h3>{book.title}</h3>
+                    <h3>{titleCase(book.title)}</h3>
                     <p>
                 <span>
                     ISBN No:

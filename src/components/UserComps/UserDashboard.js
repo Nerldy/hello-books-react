@@ -92,7 +92,6 @@ class UserDashboard extends Component {
                         component={UserSettings}
                     />
 
-                    <Route component={Error404}/>
                 </div>
 
 
