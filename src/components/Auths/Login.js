@@ -44,7 +44,7 @@ class Login extends Component {
                 API.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("auth_token");
 
                 // redirect user to the dashboard
-                this.props.history.replace("/dashboard");
+                this.props.history.replace("/dashboard/books");
             })
             .catch(err => {
                 if (err.response.data.status === "error") {

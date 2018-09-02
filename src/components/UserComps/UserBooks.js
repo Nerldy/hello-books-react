@@ -3,6 +3,7 @@ import API from "../../utils/api";
 import BookCard from "../BookCard";
 import {Redirect} from "react-router-dom";
 import swal from "sweetalert";
+import NewBookForm from "../AdminComps/NewBookForm";
 
 class UserBooks extends Component {
 
@@ -83,6 +84,11 @@ class UserBooks extends Component {
 
     render() {
         let apiBooks; // book card container
+        let adminAddNewBookButton; //admin add new book button
+
+        if (localStorage.getItem("is_admin") === "true") {
+            adminAddNewBookButton = <NewBookForm/>;
+        }
 
         // if books are available return each book details
         if (this.state.books) {
@@ -105,6 +111,8 @@ class UserBooks extends Component {
         return (
             <div>
                 <h2>Books</h2>
+
+                {adminAddNewBookButton}
 
                 {/*render each book or show no book*/}
                 {apiBooks || <h3>No books</h3>}

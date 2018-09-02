@@ -45,7 +45,8 @@ class NewBookForm extends Component {
                 notifyISBNlength: null,
                 isOkay: true,
                 hasTyped: false,
-                showChecker: true
+                showChecker: true,
+                duplicationError: ""
             });
         }
     };
@@ -64,11 +65,26 @@ class NewBookForm extends Component {
             .then(res => {
                 this.setState({isLogged: true});
             })
-            .catch(err => console.log(err.response));
+            .catch(err => {
+                console.log(err.response);
 
+                this.setState({
+                    duplicationError: (
+                        <div className="notification is-danger">
+                            <button
+                                className="delete"
+                                onClick={this.handleDeleteNotification}>{null}</button>
+                            {`Book with ISBN ${this.state.isbn} already exists`}
+                        </div>
+                    )
+                });
+            });
         this.toggle();
+    };
 
-
+    handleDeleteNotification = () => {
+        // deletes notification from the view
+        this.setState({duplicationError: ""});
     };
 
 
@@ -76,6 +92,7 @@ class NewBookForm extends Component {
         let inputClass = ["input"]; // base input class
         return (
             <div>
+                {this.state.duplicationError ? this.state.duplicationError : null}
                 <Button
                     color="danger"
                     onClick={this.toggle}>Add New Book</Button>

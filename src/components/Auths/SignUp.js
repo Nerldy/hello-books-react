@@ -147,7 +147,7 @@ class SignUp extends Component {
 
         // if logged in, redirect to dashboard
         if (this.state.isLogged) {
-            return <Redirect to={"/dashboard"}/>;
+            return <Redirect to={"/dashboard/books"}/>;
         }
 
         // add success class name to input
