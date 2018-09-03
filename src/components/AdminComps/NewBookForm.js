@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
 import API from "../../utils/api";
+import {withRouter, Redirect} from "react-router-dom";
 
 
 class NewBookForm extends Component {
@@ -155,4 +156,4 @@ class NewBookForm extends Component {
     }
 }
 
-export default NewBookForm;
+export default withRouter(NewBookForm);
