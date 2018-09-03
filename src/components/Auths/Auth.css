@@ -10,7 +10,7 @@ body .auth {
     padding-bottom: 30px;
 }
 
-form {
+#auth-form {
     background-color: #e65f5c;
     padding: 60px 40px;
     margin-top: 40px;
@@ -19,30 +19,26 @@ form {
     max-width: 800px;
 }
 
-form .field > label {
+#auth-form .field > label {
     color: white;
 }
 
-form .btn {
+#auth-form .btn {
     background-color: #e65f5c;
     border-radius: 20px;
     color: #f5f7dc;
     font-weight: bold;
 }
 
-form button {
+#auth-form button {
     background-color: #f5f7dc !important;
     color: black !important;
     margin-top: 2em !important;
 }
 
-form button:hover {
+#auth-form button:hover {
     background-color: #9f494f !important;
     font-weight: bold;
     color: white !important;
 }
 
-
-button .is-primary {
-    background-color: aqua;
-}

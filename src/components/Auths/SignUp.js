@@ -168,7 +168,7 @@ class SignUp extends Component {
                     {/*show error pop-up*/}
                     {errorMessage}
 
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit} id='auth-form'>
                         <div className="row justify-content-center">
                             <div id="helloBooksLogo" className='col'>
                                 <HelloBooksLogo/>
