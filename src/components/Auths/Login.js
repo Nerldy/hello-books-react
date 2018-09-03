@@ -88,7 +88,7 @@ class Login extends Component {
             <Fragment>
 
                 <div className="row justify-content-center">
-                    <div className="col-4">
+                    <div className="col-4" id='helloBooksLogo'>
                         <HelloBooksLogo/>
                     </div>
                 </div>

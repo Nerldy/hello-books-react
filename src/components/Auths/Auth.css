@@ -1,4 +1,23 @@
 body .auth {
-    background-color: #f5f7dc;
+    margin-top: 60px;
+}
 
+html {
+    background-color: #f5f7dc;
+}
+
+
+#helloBooksLogo {
+    max-width: 200px;
+    fill: #e65f5c;
+}
+
+form {
+    background-color: #f5f7dc;
+    padding: 60px 20px 40px 20px;
+    margin-top: 40px;
+}
+
+form input {
+    color: #e65f5c;
 }
