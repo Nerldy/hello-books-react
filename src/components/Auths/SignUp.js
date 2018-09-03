@@ -1,7 +1,7 @@
-import React, {Component, Fragment} from "react";
+import React, { Component, Fragment } from "react";
 import API from "../../utils/api";
-import {Redirect} from "react-router-dom";
-import {validateEmail} from "../../utils/helperFuncs";
+import { Redirect } from "react-router-dom";
+import { validateEmail } from "../../utils/helperFuncs";
 import HelloBooksLogo from "../HelloBooksLogo";
 import "./Auth.css";
 
@@ -27,7 +27,7 @@ class SignUp extends Component {
 
     handleChange = e => {
         // handles form inputs
-        this.setState({[e.target.name]: e.target.value});
+        this.setState({ [e.target.name]: e.target.value });
 
         // check if email format is correct
         if (e.target.name === "email" && e.target.value.length >= 1) {
@@ -66,7 +66,7 @@ class SignUp extends Component {
 
     handleDeleteNotification = () => {
         // deletes notification from the view
-        this.setState({errorMessage: ""});
+        this.setState({ errorMessage: "" });
     };
 
     handleSubmit = e => {
@@ -93,7 +93,7 @@ class SignUp extends Component {
 
                 // Add Authorization to the header
                 API.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("auth_token");
-                this.setState({isLogged: true});
+                this.setState({ isLogged: true });
 
             })
             .catch(err => {
@@ -111,7 +111,7 @@ class SignUp extends Component {
                     }
                 }
 
-                this.setState({errorMessage: err.response.data.message});
+                this.setState({ errorMessage: err.response.data.message });
                 return <Redirect to={"/signup"}/>;
             });
     };
@@ -164,98 +164,97 @@ class SignUp extends Component {
             <Fragment>
 
                 <div className="row justify-content-center">
-                    <div className="col-4" id='helloBooksLogo'>
-                        <HelloBooksLogo/>
-                    </div>
-                </div>
 
-                {/*show error pop-up*/}
-                {errorMessage}
+                    {/*show error pop-up*/}
+                    {errorMessage}
 
-                <div className="row justify-content-center">
-                    <div className="col-10">
-                        <form onSubmit={this.handleSubmit}>
-                            <div className="field">
-                                <label className="label">Username</label>
-                                <div className="control has-icons-left has-icons-right">
-                                    <input
-                                        required
-                                        type="text"
-                                        name="username"
-                                        className="input is-rounded"
-                                        value={this.state.username}
-                                        onChange={this.handleChange}/>
-                                    <span className="icon is-small is-left">
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="row justify-content-center">
+                            <div id="helloBooksLogo" className='col'>
+                                <HelloBooksLogo/>
+                            </div>
+                        </div>
+
+                        <div className="field">
+                            <label className="label">Username</label>
+                            <div className="control has-icons-left has-icons-right">
+                                <input
+                                    required
+                                    type="text"
+                                    name="username"
+                                    className="input is-rounded"
+                                    value={this.state.username}
+                                    onChange={this.handleChange}/>
+                                <span className="icon is-small is-left">
                                <i className="fas fa-user">{null}</i>
                            </span>
-                                </div>
                             </div>
+                        </div>
 
-                            <div className="field">
-                                <label className="label">Email</label>
-                                <div className="control has-icons-left has-icons-right">
-                                    <input
-                                        required
-                                        type="email"
-                                        name="email"
-                                        className={`is-rounded ${emailErrInputClass.join(" ")}`}
-                                        value={this.state.email}
-                                        onChange={this.handleChange}/>
-                                    <span className="icon is-small is-left">
+                        <div className="field">
+                            <label className="label">Email</label>
+                            <div className="control has-icons-left has-icons-right">
+                                <input
+                                    required
+                                    type="email"
+                                    name="email"
+                                    className={`is-rounded ${emailErrInputClass.join(" ")}`}
+                                    value={this.state.email}
+                                    onChange={this.handleChange}/>
+                                <span className="icon is-small is-left">
                                 <i className="fas fa-envelope">{null}</i>
                             </span>
-                                </div>
-                                {this.state.emailError}
-
                             </div>
+                            {this.state.emailError}
 
-                            <div className="field">
-                                <label className="label">Password</label>
+                        </div>
 
-                                <div className="control has-icons-left has-icons-right">
-                                    <input
-                                        required
-                                        type="password"
-                                        name="password"
-                                        className={`is-rounded ${inputClass.join(" ")}`}
-                                        value={this.state.password}
-                                        onChange={this.handleChange}/>
-                                    <span className="icon is-small is-left">
+                        <div className="field">
+                            <label className="label">Password</label>
+
+                            <div className="control has-icons-left has-icons-right">
+                                <input
+                                    required
+                                    type="password"
+                                    name="password"
+                                    className={`is-rounded ${inputClass.join(" ")}`}
+                                    value={this.state.password}
+                                    onChange={this.handleChange}/>
+                                <span className="icon is-small is-left">
                                 <i className="fas fa-lock">{null}</i>
                             </span>
-                                    {this.state.notifyPasswordLength ? (
-                                        <span className="icon is-small is-right">
+                                {this.state.notifyPasswordLength ? (
+                                    <span className="icon is-small is-right">
                                     <i className="fas fa-exclamation-triangle">{null}</i>
                                 </span>) : null}
-                                </div>
-                                {this.state.notifyPasswordLength}
                             </div>
+                            {this.state.notifyPasswordLength}
+                        </div>
 
-                            <div className="field">
-                                <label className="label"> Repeat Password</label>
+                        <div className="field">
+                            <label className="label"> Repeat Password</label>
 
-                                <div className="control has-icons-left has-icons-right">
-                                    <input
-                                        required
-                                        type="password"
-                                        name="confirm_password"
-                                        className="input is-rounded"
-                                        value={this.state.confirm_password}
-                                        onChange={this.handleChange}/>
-                                    <span className="icon is-small is-left">
+                            <div className="control has-icons-left has-icons-right">
+                                <input
+                                    required
+                                    type="password"
+                                    name="confirm_password"
+                                    className="input is-rounded"
+                                    value={this.state.confirm_password}
+                                    onChange={this.handleChange}/>
+                                <span className="icon is-small is-left">
                                 <i className="fas fa-lock">{null}</i>
                             </span>
-                                </div>
                             </div>
+                        </div>
 
-                            <button
-                                type="submit"
-                                className="button is-outlined">Sign Up
-                            </button>
+                        <button
+                            type="submit"
+                            className="button is-primary is-fullwidth is-rounded">Sign Up
+                        </button>
 
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </Fragment>
         );
