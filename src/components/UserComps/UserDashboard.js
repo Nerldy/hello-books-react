@@ -6,6 +6,7 @@ import UserBooks from "./UserBooks";
 import UserLibrary from "./UserLibrary";
 import UserBookHistory from "./UserBookHistory";
 import UserSettings from "./UserSettings";
+import Error404 from "../Error404";
 
 class UserDashboard extends Component {
     state = {
@@ -29,20 +30,12 @@ class UserDashboard extends Component {
             return <Redirect to={"/login"}/>;
         }
 
-        // if is_admin exists and true in the local storage, show admin navigation
-        // if (localStorage.getItem("is_admin") === "true") {
-        //     // adminAddBook = ();
-        // }
-
         return localStorage.getItem("auth_token") ? (
             <div className="row">
                 <div className="col-12 col-md-2">
                     <nav className="nav flex-column">
 
                         {/*Navigation links for the dashboard*/}
-                        <NavLink
-                            to={`${this.props.match.url}`}
-                            activeClassName="active">Home</NavLink>
                         <NavLink
                             to={`${this.props.match.url}/books`}
                             activeClassName="active">
@@ -75,13 +68,6 @@ class UserDashboard extends Component {
 
                     {/*Navigation routes below*/}
 
-                    {/*route to user home*/}
-                    <Route
-                        path={`${this.props.match.url}`}
-                        exact
-                        component={UserHome}
-                    />
-
                     {/*route for user to get all books*/}
                     <Route
                         path={`${this.props.match.url}/books`}
@@ -105,6 +91,7 @@ class UserDashboard extends Component {
                         path={`${this.props.match.url}/settings`}
                         component={UserSettings}
                     />
+
                 </div>
 
 

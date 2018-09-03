@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import API from "../../utils/api";
+import titleCase from 'title-case'
 
 class UserBookHistory extends Component {
     state = {
@@ -27,7 +28,7 @@ class UserBookHistory extends Component {
                 <div
                     className="bookCard"
                     key={book.return_date}>
-                    <h3>{book.title}</h3>
+                    <h3>{titleCase(book.title)}</h3>
                     <p>
                 <span>
                     ISBN No:

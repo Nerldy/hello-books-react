@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import API from "../../utils/api";
 import swal from "sweetalert";
+import titleCase from 'title-case'
 
 class UserLibrary extends Component {
     state = {
@@ -24,7 +25,6 @@ class UserLibrary extends Component {
     fetchBooks = () => {
         API.get(`/users/books?limit=3&page=${this.state.pageNum}&returned=false`)
             .then(res => {
-                console.log(res.data);
                 const borrowedBooks = res.data.books;
                 this.setState({
                     borrowedBooks,
@@ -57,10 +57,9 @@ class UserLibrary extends Component {
                 if (willReturn) {
                     API.put(`users/books/${id}`)
                         .then(res => {
-
+                            // return borrowed books
                             this.setState(currentState => ({
-                                borrowedBooks: currentState.borrowedBooks.filter(book => book.id !== id),
-                                borrowMessage: `You have returned the book titled ${bookTitle}.`
+                                borrowedBooks: currentState.borrowedBooks.filter(book => book.id !== id)
                             }));
 
                             swal(`You returned ${bookTitle}`, {
@@ -68,7 +67,7 @@ class UserLibrary extends Component {
                             });
                         });
                 } else {
-                    swal(`You still own ${bookTitle}`);
+                    swal(`${bookTitle} was not returned!`);
                 }
             });
 
@@ -83,7 +82,7 @@ class UserLibrary extends Component {
                 <div
                     className="bookCard"
                     key={book.id}>
-                    <h3>{book.title}</h3>
+                    <h3>{titleCase(book.title)}</h3>
                     <p>
                 <span>
                     ISBN No:

@@ -1,7 +1,9 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import API from "../../utils/api";
 import {Redirect} from "react-router-dom";
 import {validateEmail} from "../../utils/helperFuncs";
+import HelloBooksLogo from "../HelloBooksLogo";
+import "./Auth.css";
 
 
 class SignUp extends Component {
@@ -145,7 +147,7 @@ class SignUp extends Component {
 
         // if logged in, redirect to dashboard
         if (this.state.isLogged) {
-            return <Redirect to={"/dashboard"}/>;
+            return <Redirect to={"/dashboard/books"}/>;
         }
 
         // add success class name to input
@@ -159,94 +161,104 @@ class SignUp extends Component {
         }
 
         return (
-            <div>
+            <Fragment>
+
+                <div className="row justify-content-center">
+                    <div className="col-4">
+                        <HelloBooksLogo/>
+                    </div>
+                </div>
+
                 {/*show error pop-up*/}
                 {errorMessage}
 
-                <form onSubmit={this.handleSubmit}>
-                    <div className="field">
-                        <label className="label">Username</label>
-                        <div className="control has-icons-left has-icons-right">
-                            <input
-                                required
-                                type="text"
-                                name="username"
-                                className="input"
-                                value={this.state.username}
-                                onChange={this.handleChange}/>
-                            <span className="icon is-small is-left">
+                <div className="row justify-content-center">
+                    <div className="col-10">
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="field">
+                                <label className="label">Username</label>
+                                <div className="control has-icons-left has-icons-right">
+                                    <input
+                                        required
+                                        type="text"
+                                        name="username"
+                                        className="input is-rounded"
+                                        value={this.state.username}
+                                        onChange={this.handleChange}/>
+                                    <span className="icon is-small is-left">
                                <i className="fas fa-user">{null}</i>
                            </span>
-                        </div>
-                    </div>
+                                </div>
+                            </div>
 
-                    <div className="field">
-                        <label className="label">Email</label>
-                        <div className="control has-icons-left has-icons-right">
-                            <input
-                                required
-                                type="email"
-                                name="email"
-                                className={emailErrInputClass.join(" ")}
-                                value={this.state.email}
-                                onChange={this.handleChange}/>
-                            <span className="icon is-small is-left">
+                            <div className="field">
+                                <label className="label">Email</label>
+                                <div className="control has-icons-left has-icons-right">
+                                    <input
+                                        required
+                                        type="email"
+                                        name="email"
+                                        className={`is-rounded ${emailErrInputClass.join(" ")}`}
+                                        value={this.state.email}
+                                        onChange={this.handleChange}/>
+                                    <span className="icon is-small is-left">
                                 <i className="fas fa-envelope">{null}</i>
                             </span>
-                        </div>
-                        {this.state.emailError}
+                                </div>
+                                {this.state.emailError}
 
-                    </div>
+                            </div>
 
-                    <div className="field">
-                        <label className="label">Password</label>
+                            <div className="field">
+                                <label className="label">Password</label>
 
-                        <div className="control has-icons-left has-icons-right">
-                            <input
-                                required
-                                type="password"
-                                name="password"
-                                className={inputClass.join(" ")}
-                                value={this.state.password}
-                                onChange={this.handleChange}/>
-                            <span className="icon is-small is-left">
+                                <div className="control has-icons-left has-icons-right">
+                                    <input
+                                        required
+                                        type="password"
+                                        name="password"
+                                        className={`is-rounded ${inputClass.join(" ")}`}
+                                        value={this.state.password}
+                                        onChange={this.handleChange}/>
+                                    <span className="icon is-small is-left">
                                 <i className="fas fa-lock">{null}</i>
                             </span>
-                            {this.state.notifyPasswordLength ? (
-                                <span className="icon is-small is-right">
+                                    {this.state.notifyPasswordLength ? (
+                                        <span className="icon is-small is-right">
                                     <i className="fas fa-exclamation-triangle">{null}</i>
                                 </span>) : null}
-                        </div>
-                        {this.state.notifyPasswordLength}
-                    </div>
+                                </div>
+                                {this.state.notifyPasswordLength}
+                            </div>
 
-                    <div className="field">
-                        <label className="label"> Repeat Password</label>
+                            <div className="field">
+                                <label className="label"> Repeat Password</label>
 
-                        <div className="control has-icons-left has-icons-right">
-                            <input
-                                required
-                                type="password"
-                                name="confirm_password"
-                                className="input"
-                                value={this.state.confirm_password}
-                                onChange={this.handleChange}/>
-                            <span className="icon is-small is-left">
+                                <div className="control has-icons-left has-icons-right">
+                                    <input
+                                        required
+                                        type="password"
+                                        name="confirm_password"
+                                        className="input is-rounded"
+                                        value={this.state.confirm_password}
+                                        onChange={this.handleChange}/>
+                                    <span className="icon is-small is-left">
                                 <i className="fas fa-lock">{null}</i>
                             </span>
-                        </div>
+                                </div>
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="button is-outlined">Sign Up
+                            </button>
+
+
+                        </form>
                     </div>
-
-                    <button
-                        type="submit"
-                        className="button is-link">Sign Up
-                    </button>
-
-
-                </form>
-            </div>
-        )
-            ;
+                </div>
+            </Fragment>
+        );
     }
 }
 

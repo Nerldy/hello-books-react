@@ -1,6 +1,8 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import {withRouter} from "react-router-dom";
 import API from "../../utils/api";
+import HelloBooksLogo from "../HelloBooksLogo";
+import "./Auth.css";
 
 class Login extends Component {
     //comp for user to use to login
@@ -42,7 +44,7 @@ class Login extends Component {
                 API.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("auth_token");
 
                 // redirect user to the dashboard
-                this.props.history.replace("/dashboard");
+                this.props.history.replace("/dashboard/books");
             })
             .catch(err => {
                 if (err.response.data.status === "error") {
@@ -83,50 +85,61 @@ class Login extends Component {
 
 
         return (
-            <div>
+            <Fragment>
+
+                <div className="row justify-content-center">
+                    <div className="col-4">
+                        <HelloBooksLogo/>
+                    </div>
+                </div>
                 {/*show error pop-up*/}
                 {errorMessage}
 
-                <form onSubmit={this.handleSubmit}>
-                    <div className={"field"}>
-                        <label className={"label"}>
-                            Username
-                        </label>
-                        <div className={"control has-icons-left has-icons-right"}>
-                            <input
-                                required
-                                type="text"
-                                name="username"
-                                className={"input"}
-                                value={this.state.username}
-                                onChange={this.handleChange}/>
-                            <span className="icon is-small is-left">
+
+                <div className="row justify-content-center">
+                    <div className="col-10">
+                        <form onSubmit={this.handleSubmit}>
+                            <div className={"field"}>
+                                <label className={"label"}>
+                                    Username
+                                </label>
+                                <div className={"control has-icons-left has-icons-right"}>
+                                    <input
+                                        required
+                                        type="text"
+                                        name="username"
+                                        className="input is-rounded"
+                                        value={this.state.username}
+                                        onChange={this.handleChange}/>
+                                    <span className="icon is-small is-left">
                                 <i className="fas fa-user">{null}</i>
                             </span>
-                        </div>
-                    </div>
+                                </div>
+                            </div>
 
-                    <div className="field">
-                        <label className="label">Password</label>
+                            <div className="field">
+                                <label className="label">Password</label>
 
-                        <div className="control has-icons-left has-icons-right">
-                            <input
-                                required
-                                type="password"
-                                name="password"
-                                className={"input"}
-                                value={this.state.password}
-                                onChange={this.handleChange}/>
-                            <span className="icon is-small is-left">
+                                <div className="control has-icons-left has-icons-right">
+                                    <input
+                                        required
+                                        type="password"
+                                        name="password"
+                                        className="input is-rounded"
+                                        value={this.state.password}
+                                        onChange={this.handleChange}/>
+                                    <span className="icon is-small is-left">
                                 <i className="fas fa-lock">{null}</i>
                             </span>
-                        </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" className="button is-outlined">Login</button>
+
+                        </form>
                     </div>
-
-                    <button type="submit">Login</button>
-
-                </form>
-            </div>
+                </div>
+            </Fragment>
         );
     }
 }
