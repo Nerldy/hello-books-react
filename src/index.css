@@ -1,10 +1,22 @@
+body, html {
+    height: 100%;
+}
+
+#homeDash {
+    background-color: aqua;
+    height: 100%;
+    width: 100%;
+}
+
 body {
     font-family: 'PT Serif', serif;
 }
 
-form {
-    max-width: 500px;
+#auth-form {
+    max-width: 800px;
+    min-width: 400px;
 }
+
 
 /*
     book card classes
@@ -20,4 +32,12 @@ form {
 
 .bookCard h3 {
     font-size: 3em;
+}
+
+#auth-link {
+    background-color: black;
+}
+
+.active {
+    background-color: #e65f5c !important;
 }

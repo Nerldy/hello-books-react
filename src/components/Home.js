@@ -1,4 +1,4 @@
-import {NavLink, Route, Switch, Redirect} from "react-router-dom";
+import { NavLink, Route, Switch, Redirect } from "react-router-dom";
 import React from "react";
 import SignUp from "./Auths/SignUp";
 import Login from "./Auths/Login";
@@ -15,20 +15,38 @@ const Home = () => {
     }
     return (
         <div className="container-fluid">
-            <div
-                className="row align-items-center">
-                <aside className="col-12 col-md-4 list-group">
-                    <NavLink
-                        to={`/signup`}
-                        activeClassName="active"
-                        className="list-group-item list-group-item-action">Sign Up</NavLink>
-                    <NavLink
-                        to={`/login`}
-                        activeClassName="active"
-                        className="list-group-item list-group-item-action">Login</NavLink>
+            <div className="row">
+                <aside className="col-md-auto">
+                    <div
+                        className="nav flex-column nav-pills"
+                        id="v-pills-tab"
+                        role="tablist"
+                        aria-orientation="vertical">
+                        <NavLink
+                            to={`/signup`}
+                            activeClassName="active"
+                            id="v-pills-signup-tab"
+                            data-toggle="pill"
+                            href="#v-pills-signup"
+                            role="tab"
+                            aria-controls="v-pills-signup"
+                            aria-selected="false"
+                            className="nav-link">Sign Up</NavLink>
+                        <NavLink
+                            to={`/login`}
+                            activeClassName="active"
+                            id="v-pills-login-tab"
+                            data-toggle="pill"
+                            href="#v-pills-login"
+                            role="tab"
+                            aria-controls="v-pills-login"
+                            aria-selected="false"
+                            className="nav-link">Login</NavLink>
+                    </div>
+
                 </aside>
 
-                <div className="col-12 col-md-8">
+                <div className="col">
                     <Switch>
                         <Route
                             exact

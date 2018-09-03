@@ -8,7 +8,7 @@ const UserHome = props => {
         adminAddNewBookButton = <NewBookForm/>;
     }
     return (
-        <div>
+        <div id='homeDash'>
             <h2>Welcome home, {localStorage.getItem("username")}</h2>
             {adminAddNewBookButton}
 
