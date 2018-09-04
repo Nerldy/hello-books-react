@@ -1,5 +1,5 @@
 import React from "react";
-import {shallow} from "../../utils/enzyme";
+
 
 import Login from "../Auths/Login";
 
