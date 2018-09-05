@@ -40,5 +40,6 @@
     "mocha": "^5.2.0",
     "moxios": "^0.4.0",
     "sinon": "^6.1.5"
-  }
+  },
+  "homepage": "https://USERNAME.github.io/PROJECT_NAME/"
 }
