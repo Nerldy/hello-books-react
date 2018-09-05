@@ -10,7 +10,6 @@
     "react-dom": "^16.4.2",
     "react-modal": "^3.5.1",
     "react-responsive-modal": "^3.3.0",
-    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "reactstrap": "^6.4.0",
     "semantic-ui": "^2.3.3",
@@ -26,6 +25,8 @@
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.15.0",
+    "react-router-dom": "^4.3.1",
+    "react-router-test-context": "^0.1.0",
     "babel-eslint": "^9.0.0",
     "chai": "^4.1.2",
     "enzyme": "^3.5.0",

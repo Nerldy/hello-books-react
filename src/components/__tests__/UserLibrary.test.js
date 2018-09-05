@@ -3,25 +3,27 @@ import UserLibrary from "../UserComps/UserLibrary";
 
 
 describe("UserLibrary Component", () => {
-    it("should show previous and next buttons", () => {
-        const wrapper = shallow(<UserLibrary/>);
 
-        // set buttons states
-        wrapper.setState({ has_next: true, has_prev: true });
-        const domHtml = "<div><h2>Borrowed books</h2><button>Next</button><button>Prev</button></div>";
-        expect(wrapper.html()).to.equal(domHtml);
+    it("should fetch data on component mount", () => {
+        const fetchData = sinon.stub().resolves({ data: {} });
+        const component = mount(<UserLibrary fetchBookNotReturned={fetchData}/>);
+        expect(fetchData.callCount).to.equal(1);
     });
 
-    it("should render a book", () => {
-        const wrapper = shallow(<UserLibrary/>);
+    it("should set component state to fetchData", async () => {
+        const postBookData = [
+            {
+                "date_created": "Tue, 24 Jul 2018 18:44:13 GMT",
+                "date_modified": "Mon, 27 Aug 2018 10:53:56 GMT",
+                "id": 1,
+                "is_borrowed": true,
+                "isbn": "0992444721",
+                "title": "Linda Dunn"
+            }
+        ];
+        const fetchData = sinon.stub().resolves({ data: { books: postBookData } });
+        const component = await mount(<UserLibrary fetchBookNotReturned={fetchData}/>);
+        expect(component.state("borrowedBooks")).is.deep.equal(postBookData);
 
-        // set book state
-        wrapper.setState({
-            borrowedBooks: [
-                { title: "book tester 1", isbn: 6533454345, id: 1 }
-            ]
-        });
-        console.log(wrapper.debug());
-        expect(wrapper.find("[className=\"bookCard\"]")).to.have.lengthOf(1);
     });
 });

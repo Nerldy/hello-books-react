@@ -1,7 +1,7 @@
 import React from "react";
 import UserBookHistory, { fetchData } from "../UserComps/UserBookHistory";
-import API, { BASE_URL } from "../../utils/api";
-import axios from "axios";
+import API from "../../utils/api";
+
 
 
 describe("UserBookHistory Component", () => {
