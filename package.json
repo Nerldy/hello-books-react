@@ -12,7 +12,6 @@
     "react-responsive-modal": "^3.3.0",
     "react-scripts": "1.1.4",
     "reactstrap": "^6.4.0",
-    "semantic-ui": "^2.3.3",
     "sweetalert": "^2.1.0",
     "title-case": "^2.1.1"
   },
