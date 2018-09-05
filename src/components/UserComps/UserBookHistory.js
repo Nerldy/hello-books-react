@@ -1,8 +1,15 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import API from "../../utils/api";
-import titleCase from 'title-case'
+import titleCase from "title-case";
+
+
+const fetchData = () => {
+    return API.get("/users/books");
+};
+
 
 class UserBookHistory extends Component {
+    static defaultProps = { fetchData };
     state = {
         booksHistory: []
     };
@@ -14,9 +21,8 @@ class UserBookHistory extends Component {
 
 
         API.get("/users/books").then(res => {
-            console.log(res.data)
             const booksHistory = res.data.books;
-            this.setState({booksHistory});
+            this.setState({ booksHistory });
         });
     }
 
