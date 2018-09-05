@@ -1,9 +1,14 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import API from "../../utils/api";
 import swal from "sweetalert";
-import titleCase from 'title-case'
+import titleCase from "title-case";
+
+const fetchBookNotReturned = page => {
+    return API.get(`/users/books?limit=3&page=${page}&returned=false`);
+};
 
 class UserLibrary extends Component {
+    static defaultProps = { fetchBookNotReturned };
     state = {
         borrowedBooks: [],
         borrowMessage: null,
@@ -23,7 +28,7 @@ class UserLibrary extends Component {
     }
 
     fetchBooks = () => {
-        API.get(`/users/books?limit=3&page=${this.state.pageNum}&returned=false`)
+        this.props.fetchBookNotReturned(this.state.pageNum)
             .then(res => {
                 const borrowedBooks = res.data.books;
                 this.setState({
@@ -104,8 +109,8 @@ class UserLibrary extends Component {
                 <h2>Borrowed books</h2>
 
                 {booksNotReturned || <h3>No books currently borrowed</h3>}
-                {this.state.has_next ? <p onClick={this.handleNextPage}>Next</p> : null}
-                {this.state.has_prev ? <p onClick={this.handlePrevPage}>Prev</p> : null}
+                {this.state.has_next ? <button onClick={this.handleNextPage}>Next</button> : null}
+                {this.state.has_prev ? <button onClick={this.handlePrevPage}>Prev</button> : null}
             </div>
         );
     }

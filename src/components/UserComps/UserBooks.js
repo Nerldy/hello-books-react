@@ -1,4 +1,3 @@
-/* eslint-disable import/order,quotes,no-unused-vars,require-jsdoc,indent,no-undef */
 import React, { Component } from "react";
 import API from "../../utils/api";
 import BookCard from "../BookCard";
@@ -6,8 +5,21 @@ import { Redirect } from "react-router-dom";
 import swal from "sweetalert";
 import NewBookForm from "../AdminComps/NewBookForm";
 
+// fetch all books
+export const fetchData = () => {
+    return API.get("books");
+};
+
+export const postData = id => {
+    return API.post(`users/books/${id}`);
+};
+
+export const deleteData = id => {
+    return API.delete(`books/${id}`);
+};
 
 class UserBooks extends Component {
+    static defaultProps = { fetchData, postData, deleteData };
     state = {
         books: [],
         borrowBookId: null,
@@ -18,9 +30,7 @@ class UserBooks extends Component {
         // Add Authorization to the header
         API.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem("auth_token")}`;
 
-        API.get("books").then((res) => {
-            // console.log(res.data.books);
-            // console.log("eka-ee--ela".repeat(200));
+        this.props.fetchData().then((res) => {
             const { books } = res.data;
             this.setState({ books });
         }).catch((err) => {
@@ -45,7 +55,7 @@ class UserBooks extends Component {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    API.delete(`books/${id}`)
+                    this.props.deleteData(id)
                         .then((res) => {
                             this.setState(currentState => (
                                 {
@@ -66,7 +76,7 @@ class UserBooks extends Component {
         /* handles borrowing a book
            it returns the book id */
 
-        API.post(`users/books/${id}`)
+        this.props.postData(id)
             .then((res) => {
                 this.setState(currentState => (
                     {
@@ -102,7 +112,7 @@ class UserBooks extends Component {
                 bookId={book.id}/>);
         }
 
-        // if book borrow message is available, sho user
+        // if book borrow message is available, show user
         if (this.state.borrowMessage) {
             alert(`${this.state.borrowMessage}`);
         }
