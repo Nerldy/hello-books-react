@@ -3,7 +3,7 @@ import API from "../../utils/api";
 import titleCase from "title-case";
 
 
-const fetchData = () => {
+export const fetchData = () => {
     return API.get("/users/books");
 };
 
@@ -20,7 +20,7 @@ class UserBookHistory extends Component {
             "Bearer " + localStorage.getItem("auth_token");
 
 
-        API.get("/users/books").then(res => {
+        this.props.fetchData().then(res => {
             const booksHistory = res.data.books;
             this.setState({ booksHistory });
         });
