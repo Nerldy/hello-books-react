@@ -64,7 +64,6 @@ class ResetPassword extends Component {
 
             })
             .catch(err => {
-                console.log(err.response);
                 if (err.response.data.status === "error") {
                     // check if password is in error message
                     if (err.response.data.message.includes("password")) {

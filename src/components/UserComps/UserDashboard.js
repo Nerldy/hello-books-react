@@ -24,7 +24,6 @@ class UserDashboard extends Component {
     };
 
     render() {
-        let adminAddBook;
         // if is logged out, redirect user to the login page
         if (this.state.isLoggedOut) {
             return <Redirect to={"/login"}/>;
@@ -61,8 +60,7 @@ class UserDashboard extends Component {
                 </div>
 
 
-                {/*admin feature*/}
-                {adminAddBook}
+
 
                 <div className="col-12 col-md-10">
 
@@ -93,8 +91,6 @@ class UserDashboard extends Component {
                     />
 
                 </div>
-
-
                 <div/>
             </div>
         ) : (
