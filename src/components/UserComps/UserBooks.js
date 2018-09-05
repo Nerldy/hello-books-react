@@ -112,7 +112,7 @@ class UserBooks extends Component {
                 bookId={book.id}/>);
         }
 
-        // if book borrow message is available, sho user
+        // if book borrow message is available, show user
         if (this.state.borrowMessage) {
             alert(`${this.state.borrowMessage}`);
         }
