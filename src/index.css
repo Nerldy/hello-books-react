@@ -1,20 +1,51 @@
-body, html {
-    height: 100%;
-}
-
 #homeDash {
     background-color: aqua;
     height: 100%;
     width: 100%;
 }
 
+#helloBooksLogo {
+    max-width: 300px;
+    fill: #000066;
+    padding-bottom: 30px;
+}
+
 body {
     font-family: 'PT Serif', serif;
 }
 
-#auth-form {
-    max-width: 800px;
-    min-width: 400px;
+.hero-body {
+    background-color: #f5f7dc;
+}
+
+.sign-up-form {
+    background-color: #000066;
+}
+
+.button.is-primary.auth-button {
+    background-color: #000066;
+}
+
+.button.is-primary.auth-button:hover {
+    background-color: #e65f5c;
+}
+
+nav.auth-sign {
+    font-size: 1.4em;
+}
+
+.active, nav.auth-link > a:hover {
+    font-weight: bold;
+    color: #e65f5c;
+}
+
+nav.auth-link {
+    color: #000066;
+    font-size: 1.3em;
+}
+
+nav > span {
+    margin: 3px;
 }
 
 
@@ -36,8 +67,4 @@ body {
 
 #auth-link {
     background-color: black;
-}
-
-.active {
-    background-color: #e65f5c !important;
 }

@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import API from "../../utils/api";
-import HelloBooksLogo from "../HelloBooksLogo";
 import "./Auth.css";
 
 class Login extends Component {
@@ -60,13 +59,6 @@ class Login extends Component {
         this.setState({ errorMessage: "" });
     };
 
-
-    /*
-    ============================================================
-        Render
-
-        */
-
     render() {
         let errorMessage;
 
@@ -86,26 +78,19 @@ class Login extends Component {
 
         return (
             <Fragment>
+                <p className="subtitle has-text-grey">Please login to proceed.</p>
 
-                <div className="row justify-content-center">
+                <div className="box">
                     {/*show error pop-up*/}
                     {errorMessage}
 
-                    <form onSubmit={this.handleSubmit} id='auth-form'>
+                    <form onSubmit={this.handleSubmit}>
 
-                        <div className="row justify-content-center">
-                            <div
-                                id="helloBooksLogo"
-                                className="col">
-                                <HelloBooksLogo/>
-                            </div>
-                        </div>
-
-                        <div className={"field"}>
-                            <label className={"label"}>
+                        <div className="field">
+                            <label className="label">
                                 Username
                             </label>
-                            <div className={"control has-icons-left has-icons-right"}>
+                            <div className="control has-icons-left has-icons-right">
                                 <input
                                     required
                                     type="text"
@@ -138,7 +123,7 @@ class Login extends Component {
 
                         <button
                             type="submit"
-                            className="button is-primary is-fullwidth is-rounded">Login
+                            className="button is-primary is-fullwidth is-rounded auth-button">Login
                         </button>
 
                     </form>

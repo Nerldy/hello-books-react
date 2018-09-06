@@ -160,20 +160,17 @@ class SignUp extends Component {
             inputClass.push("is-danger");
         }
 
+
         return (
             <Fragment>
+                <p className="subtitle has-text-grey">Please sign up to proceed.</p>
 
-                <div className="row justify-content-center">
+                <div className="box">
 
                     {/*show error pop-up*/}
                     {errorMessage}
 
-                    <form onSubmit={this.handleSubmit} id='auth-form'>
-                        <div className="row justify-content-center">
-                            <div id="helloBooksLogo" className='col'>
-                                <HelloBooksLogo/>
-                            </div>
-                        </div>
+                    <form onSubmit={this.handleSubmit}>
 
                         <div className="field">
                             <label className="label">Username</label>
@@ -250,7 +247,7 @@ class SignUp extends Component {
 
                         <button
                             type="submit"
-                            className="button is-primary is-fullwidth is-rounded">Sign Up
+                            className="button is-primary is-fullwidth is-rounded auth-button">Sign Up
                         </button>
 
 
