@@ -117,3 +117,7 @@ button.newBook:hover {
     font-weight: bold;
     color: #ffff82;
 }
+
+.hero.is-success a.navbar-item:hover {
+    background-color: #1c2d58;
+}
