@@ -145,7 +145,7 @@ class ResetPassword extends Component {
 
                     <button
                         type="submit"
-                        className="button is-link">Reset Password
+                        className="button is-link">Submit
                     </button>
 
 
