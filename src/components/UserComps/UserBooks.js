@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import API from "../../utils/api";
 import BookCard from "../BookCard";
 import { Redirect } from "react-router-dom";
@@ -117,14 +117,14 @@ class UserBooks extends Component {
             alert(`${this.state.borrowMessage}`);
         }
         return (
-            <div>
+            <Fragment>
                 <h2>Books</h2>
 
                 {adminAddNewBookButton}
 
                 {/* render each book or show no book */}
                 {apiBooks || <h3>No books</h3>}
-            </div>
+            </Fragment>
         );
     }
 }

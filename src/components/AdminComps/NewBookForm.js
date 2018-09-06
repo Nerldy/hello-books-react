@@ -94,9 +94,7 @@ class NewBookForm extends Component {
         return (
             <div>
                 {this.state.duplicationError ? this.state.duplicationError : null}
-                <Button
-                    color="danger"
-                    onClick={this.toggle}>Add New Book</Button>
+                <Button onClick={this.toggle} className='newBook'>Add New Book</Button>
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}

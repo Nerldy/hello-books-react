@@ -48,17 +48,50 @@ nav > span {
     margin: 3px;
 }
 
-
 /*
     book card classes
     =====================
     */
 
 .bookCard {
-    border: black 1px solid;
-    max-width: 600px;
-    margin-bottom: 10px;
-    padding: 10px;
+    background-color: #f5f7dc;
+    box-shadow: #9f9baa 4px 4px;
+    margin-bottom: 20px;
+}
+
+.button.borrow {
+    background-color: #e65f5c;
+
+    color: #ffff82 !important;
+}
+
+.button.borrow:hover {
+    background-color: #000066 !important;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.4em;
+}
+
+article > h3 {
+    color: #e65f5c;
+}
+
+.fa-trash-alt, .fa-edit {
+    color: #e65f5c;
+}
+
+.fa-trash-alt:hover, .fa-edit:hover {
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.fa-trash-alt:hover {
+    color: red;
+}
+
+.fa-edit:hover {
+    color: #000066;
 }
 
 .bookCard h3 {
@@ -67,4 +100,20 @@ nav > span {
 
 #auth-link {
     background-color: black;
+}
+
+footer a {
+    display: inline-block;
+}
+
+button.newBook {
+    background-color: #e65f5c;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+button.newBook:hover {
+    background-color: #000066;
+    font-weight: bold;
+    color: #ffff82;
 }

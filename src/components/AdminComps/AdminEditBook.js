@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import API from "../../utils/api";
 import { withRouter } from "react-router-dom";
@@ -48,7 +48,7 @@ class AdminEditBook extends Component {
     render() {
         let inputClass = ["input"]; // base input class
         return (
-            <div>
+            <Fragment>
                 <div onClick={this.toggle}>
                     <i className="fas fa-edit">{null}</i>
                 </div>
@@ -87,7 +87,7 @@ class AdminEditBook extends Component {
                         </form>
                     </ModalBody>
                 </Modal>
-            </div>
+            </Fragment>
         );
     }
 }

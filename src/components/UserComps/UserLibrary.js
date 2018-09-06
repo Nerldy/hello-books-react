@@ -85,21 +85,26 @@ class UserLibrary extends Component {
         if (this.state.borrowedBooks) {
             booksNotReturned = this.state.borrowedBooks.map(book => (
                 <div
-                    className="bookCard"
+                    className="box bookCard"
                     key={book.id}>
-                    <h3>{titleCase(book.title)}</h3>
-                    <p>
+                    <article>
+                        <h3>{titleCase(book.title)}</h3>
+                        <p>
                 <span>
                     ISBN No:
                 </span>
-                        {book.isbn}
-                    </p>
+                            {book.isbn}
+                        </p>
 
-                    <footer>
-                        <a
-                            className="button"
-                            onClick={() => this.handleReturnBook(book.id, book.title)}>Return this book</a>
-                    </footer>
+                        <footer>
+                            <a
+                                className="button borrow"
+                                onClick={() => this.handleReturnBook(book.id, book.title)}>
+                                <i className="fas fa-hand-point-left">{}</i>
+                            </a>
+
+                        </footer>
+                    </article>
                 </div>
             ));
         }

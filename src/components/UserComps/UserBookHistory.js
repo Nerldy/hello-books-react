@@ -32,17 +32,19 @@ class UserBookHistory extends Component {
         if (this.state.booksHistory) {
             booksArchive = this.state.booksHistory.map(book => (
                 <div
-                    className="bookCard"
+                    className="box bookCard"
                     key={book.return_date}>
-                    <h3>{titleCase(book.title)}</h3>
-                    <p>
+                    <article>
+                        <h3>{titleCase(book.title)}</h3>
+                        <p>
                 <span>
                     ISBN No:
                 </span>
-                        {book.isbn}
-                    </p>
-                    <p>Date Borrowed: {book.borrow_date.split(" ").slice(0, 4).join(" ")}</p>
-                    <p>Date Returned: {book.return_date.split(" ").slice(0, 4).join(" ")}</p>
+                            {book.isbn}
+                        </p>
+                        <p>Date Borrowed: {book.borrow_date.split(" ").slice(0, 4).join(" ")}</p>
+                        <p>Date Returned: {book.return_date.split(" ").slice(0, 4).join(" ")}</p>
+                    </article>
                 </div>
             ));
         }

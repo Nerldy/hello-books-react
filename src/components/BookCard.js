@@ -1,4 +1,4 @@
-import React, {Fragment, Component} from "react";
+import React, { Fragment, Component } from "react";
 import AdminEditBook from "./AdminComps/AdminEditBook";
 import titleCase from "title-case";
 
@@ -10,7 +10,7 @@ class BookCard extends Component {
     };
 
     onChangeTitle = e => {
-        this.setState({[e.target.name]: e.target.value});
+        this.setState({ [e.target.name]: e.target.value });
     };
 
     render() {
@@ -18,12 +18,20 @@ class BookCard extends Component {
 
         if (localStorage.getItem("is_admin") === "true") {
             adminButtons = (
-                <div>
+                <div
+                    style={{
+                        "display": "flex",
+                        "alignItems": "center"
+                    }}>
                     <AdminEditBook
                         title={this.state.title}
                         bookId={this.props.bookId}
                         changeTitle={this.onChangeTitle}/>
-                    <div onClick={this.props.handleDeleteBook}>
+                    <div
+                        onClick={this.props.handleDeleteBook}
+                        style={{
+                            "marginLeft": "20px"
+                        }}>
                         <i className="fas fa-trash-alt">{null}</i>
                     </div>
                 </div>
@@ -35,21 +43,33 @@ class BookCard extends Component {
         if (!this.props.is_borrowed) {
             // check for books not borrowed
             booksNotBorrowed = (
-                <div className="bookCard">
-                    <h3>{titleCase(this.state.title)}</h3>
-                    <p>
+                <div className="box bookCard">
+                    <article>
+                        <h3>{titleCase(this.state.title)}</h3>
+                        <p>
                 <span>
                     ISBN No:
                 </span>
-                        {this.props.isbn}
-                    </p>
+                            {this.props.isbn}
+                        </p>
 
-                    <footer>
-                        <a
-                            onClick={this.props.clickBorrow}
-                            className="button">Borrow this book</a>
-                        {adminButtons}
-                    </footer>
+                        <footer
+                            className="container"
+                            style={{
+                                "display": "flex",
+                                "alignItems": "center",
+                                "justifyContent": "space-around"
+                            }}>
+                            <a
+                                onClick={this.props.clickBorrow}
+                                className="button borrow">
+                                <i
+                                    className="fas fa-share"
+                                    onClick={this.props.clickBorrow}>{}</i>
+                            </a>
+                            {adminButtons}
+                        </footer>
+                    </article>
                 </div>
             );
         }

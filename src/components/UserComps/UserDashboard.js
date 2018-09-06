@@ -93,7 +93,11 @@ class UserDashboard extends Component {
                     <div
                         className="hero-body"
                         style={{ "backgroundColor": "#000066" }}>
-                        <div className="container has-text-centered">
+                        <div
+                            className="container has-text-centered"
+                            style={{
+                                "maxWidth": "600px"
+                            }}>
 
                             {/*Navigation routes below*/}
 
