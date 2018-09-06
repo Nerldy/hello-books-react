@@ -26,7 +26,7 @@ body {
     background-color: #000066;
 }
 
-.button.is-primary.auth-button:hover {
+.button.is-primary.auth-button:hover, .hero.is-success a.navbar-item.is-active {
     background-color: #e65f5c;
 }
 

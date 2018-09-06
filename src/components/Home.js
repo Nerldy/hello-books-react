@@ -21,8 +21,12 @@ const Home = () => {
                 <div className="hero-body">
                     <div className="container has-text-centered">
                         <div className="column is-4 is-offset-4">
-                            <div id="helloBooksLogo">
-                                <HelloBooksLogo/>
+                            <div className='level'>
+                                <div className='level-item has-text-centered'>
+                                    <div id="helloBooksLogo">
+                                    <HelloBooksLogo/>
+                                    </div>
+                                </div>
                             </div>
                             <nav
                                 className="auth-link">
@@ -30,7 +34,6 @@ const Home = () => {
                                 <span>|</span>
                                 <NavLink to={`/login`}>Login</NavLink>
                             </nav>
-
                             <div className="main-content-area">
                                 <Switch>
                                     <Route
@@ -39,14 +42,12 @@ const Home = () => {
                                     <Route
                                         path={`/login`}
                                         component={Login}/>
-
                                 </Switch>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </Fragment>
     );
 };
