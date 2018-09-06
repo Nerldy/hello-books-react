@@ -121,3 +121,11 @@ button.newBook:hover {
 .hero.is-success a.navbar-item:hover {
     background-color: #1c2d58;
 }
+
+.button.is-success.is-inverted {
+    color: #000066;
+}
+
+.button.is-success.is-inverted:hover {
+    background-color: #ffff82;
+}
