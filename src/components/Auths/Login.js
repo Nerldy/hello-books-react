@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import API from "../../utils/api";
-import "./Auth.css";
 
 class Login extends Component {
 	//comp for user to use to login

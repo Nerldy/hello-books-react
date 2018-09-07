@@ -9,7 +9,5 @@ describe.skip("UserDashboard Component", () => {
         sinon.stub(window.localStorage, "setItem");
         window.localStorage.setItem("auth_token", "tester");
         const wrapper = shallow(<UserDashboard/>);
-
-        console.log(wrapper.debug());
     });
 });

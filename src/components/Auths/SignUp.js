@@ -2,8 +2,6 @@ import React, { Component, Fragment } from "react";
 import API from "../../utils/api";
 import { Redirect } from "react-router-dom";
 import { validateEmail } from "../../utils/helperFuncs";
-import HelloBooksLogo from "../HelloBooksLogo";
-import "./Auth.css";
 
 class SignUp extends Component {
 	//comp for user to use to sign up
