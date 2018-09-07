@@ -4,42 +4,28 @@ import Home from "./Home";
 import UserDashboard from "./UserComps/UserDashboard";
 import Error404 from "./Error404";
 
-
 class App extends Component {
-    state = {};
+	state = {};
 
-    render() {
-        return (
-            <Router>
-                <div>
+	render() {
+		return (
+			<Router>
+				<div>
+					<Switch>
+						<Route exact path={"/"} component={Home} />
 
-                    <Switch>
-                        <Route
-                            exact
-                            path={"/"}
-                            component={Home}/>
+						<Route path={`/signup`} component={Home} />
 
-                        <Route
-                            path={`/signup`}
-                            component={Home}/>
+						<Route path={`/login`} component={Home} />
 
-                        <Route
-                            path={`/login`}
-                            component={Home}/>
+						<Route path={`/dashboard`} component={UserDashboard} />
 
-                        <Route
-                            path={`/dashboard`}
-                            component={UserDashboard}/>
-
-                        <Route
-                            component={Error404}/>
-
-
-                    </Switch>
-                </div>
-            </Router>
-        );
-    }
+						<Route component={Error404} />
+					</Switch>
+				</div>
+			</Router>
+		);
+	}
 }
 
 export default App;
