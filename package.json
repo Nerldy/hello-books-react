@@ -48,5 +48,5 @@
     "react-router-test-context": "^0.1.0",
     "sinon": "^6.1.5"
   },
-  "homepage": "https://USERNAME.github.io/PROJECT_NAME/"
+  "homepage": "https://hello-books-frontend.herokuapp.com/"
 }
