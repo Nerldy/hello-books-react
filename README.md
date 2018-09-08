@@ -12,25 +12,25 @@ This frontend integrates with the [Hello-Books-API](https://github.com/Nerldy/td
 [Hello Books React](https://hello-books-frontend.herokuapp.com/)
 
 ## Prerequisites
-[Node.js](https://nodejs.org/en/)
-React 16.4.2
+- [Node.js](https://nodejs.org/en/)
+- React 16.4.2
 
 ## Running The App
 1. Clone the repo
 
-`$ https://github.com/Nerldy/hello-books-react.git`
+  - `$ https://github.com/Nerldy/hello-books-react.git`
 
 2. Install dependencies
 
-`$ npm install`
+  - `$ npm install`
 
 3. Start the app
 
-`$ npm start`
+  - `$ npm start`
 
 _*To run tests*_
 
-`$ npm test`
+  - `$ npm test`
 
 ## Technologies & Packages Used
 
