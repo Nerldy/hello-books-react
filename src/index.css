@@ -1,22 +1,52 @@
-body, html {
-    height: 100%;
-}
-
 #homeDash {
     background-color: aqua;
     height: 100%;
     width: 100%;
 }
 
+#helloBooksLogo {
+    max-width: 300px;
+    fill: #000066;
+    padding-bottom: 30px;
+}
+
 body {
     font-family: 'PT Serif', serif;
 }
 
-#auth-form {
-    max-width: 800px;
-    min-width: 400px;
+.hero-body {
+    background-color: #f5f7dc;
 }
 
+.sign-up-form {
+    background-color: #000066;
+}
+
+.button.is-primary.auth-button {
+    background-color: #000066;
+}
+
+.button.is-primary.auth-button:hover, .hero.is-success a.navbar-item.is-active {
+    background-color: #e65f5c;
+}
+
+nav.auth-sign {
+    font-size: 1.4em;
+}
+
+.active, nav.auth-link > a:hover {
+    font-weight: bold;
+    color: #e65f5c;
+}
+
+nav.auth-link {
+    color: #000066;
+    font-size: 1.3em;
+}
+
+nav > span {
+    margin: 3px;
+}
 
 /*
     book card classes
@@ -24,10 +54,44 @@ body {
     */
 
 .bookCard {
-    border: black 1px solid;
-    max-width: 600px;
-    margin-bottom: 10px;
-    padding: 10px;
+    background-color: #f5f7dc;
+    box-shadow: #9f9baa 4px 4px;
+    margin-bottom: 20px;
+}
+
+.button.borrow {
+    background-color: #e65f5c;
+
+    color: #ffff82 !important;
+}
+
+.button.borrow:hover {
+    background-color: #000066 !important;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.4em;
+}
+
+article > h3 {
+    color: #e65f5c;
+}
+
+.fa-trash-alt, .fa-edit {
+    color: #e65f5c;
+}
+
+.fa-trash-alt:hover, .fa-edit:hover {
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.fa-trash-alt:hover {
+    color: red;
+}
+
+.fa-edit:hover {
+    color: #000066;
 }
 
 .bookCard h3 {
@@ -38,6 +102,30 @@ body {
     background-color: black;
 }
 
-.active {
-    background-color: #e65f5c !important;
+footer a {
+    display: inline-block;
+}
+
+button.newBook {
+    background-color: #e65f5c;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+button.newBook:hover {
+    background-color: #000066;
+    font-weight: bold;
+    color: #ffff82;
+}
+
+.hero.is-success a.navbar-item:hover {
+    background-color: #1c2d58;
+}
+
+.button.is-success.is-inverted {
+    color: #000066;
+}
+
+.button.is-success.is-inverted:hover {
+    background-color: #ffff82;
 }
