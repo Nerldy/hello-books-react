@@ -123,8 +123,8 @@ class UserLibrary extends Component {
 						<div>
 								<h2>Borrowed books</h2>
 								{booksNotReturned || <h3>No books currently borrowed</h3>}
-								{this.state.has_next ? <button onClick={this.handleNextPage}>Next</button> : null}
 								{this.state.has_prev ? <button onClick={this.handlePrevPage}>Prev</button> : null}
+								{this.state.has_next ? <button onClick={this.handleNextPage}>Next</button> : null}
 						</div>
 				);
 		}

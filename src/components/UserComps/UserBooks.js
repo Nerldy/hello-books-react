@@ -44,6 +44,14 @@ class UserBooks extends Component {
 				// Add Authorization to the header
 				API.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem("auth_token")}`;
 
+				this.fetchBooks();
+
+		}
+
+		/**
+		 * fetch books from API
+		 */
+		fetchBooks = () => {
 				this.props
 						.fetchData()
 						.then(res => {
@@ -57,7 +65,7 @@ class UserBooks extends Component {
 										return <Redirect to={"/login"} />;
 								}
 						});
-		}
+		};
 
 		/**
 		 * sends book id to API to be deleted
@@ -118,10 +126,11 @@ class UserBooks extends Component {
 
 		render() {
 				let apiBooks; // book card container
-				let adminAddNewBookButton; // admin add new book button
+				let adminAddNewBookButton;
 
+				// admin add new book button
 				if (localStorage.getItem("is_admin") === "true") {
-						adminAddNewBookButton = <NewBookForm />;
+						adminAddNewBookButton = <NewBookForm fetchBooks={this.fetchBooks}/>;
 				}
 
 				// if books are available return each book details
