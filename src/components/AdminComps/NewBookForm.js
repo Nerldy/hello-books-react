@@ -73,7 +73,7 @@ class NewBookForm extends Component {
 
 				API.post("books", data)
 						.then(res => {
-								this.setState({ isLogged: true });
+								this.setState({ isLogged: true }, () => this.props.fetchBooks());
 						})
 						.catch(err => {
 								console.log(err.response);
