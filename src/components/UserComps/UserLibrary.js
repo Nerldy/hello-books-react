@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign,no-plusplus */
 import React, { Component } from "react";
 import API from "../../utils/api";
 import swal from "sweetalert";
@@ -24,7 +25,7 @@ class UserLibrary extends Component {
 
 		componentDidMount() {
 				// Add Authorization to the header
-				API.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("auth_token");
+				API.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem("auth_token")}`;
 
 				// fetch books from the API
 				this.fetchBooks();

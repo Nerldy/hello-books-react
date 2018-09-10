@@ -29,7 +29,8 @@ class ResetPassword extends Component {
 				// notify user when new_password is less than 8 characters
 				if (e.target.name === "new_password" && e.target.value.length < 8) {
 						this.setState({
-								notifyPasswordLength: <p className="help is-danger">Password length must not be less than 8</p>,
+								notifyPasswordLength: <p className="help is-danger">Password length must not be less
+										than 8</p>,
 								hasTyped: true
 						});
 				} else if (e.target.name === "new_password" && e.target.value.length >= 8) {
@@ -70,7 +71,8 @@ class ResetPassword extends Component {
 														errorMessage: err.response.data.message,
 														password: "",
 														confirm_password: "",
-														notifyPasswordLength: <p className="help is-danger">{err.response.data.message}</p>,
+														notifyPasswordLength:
+																<p className="help is-danger">{err.response.data.message}</p>,
 														hasTyped: true
 												});
 										}
@@ -99,7 +101,10 @@ class ResetPassword extends Component {
 								{errorMessage}
 								<form onSubmit={this.handleSubmit}>
 										<div className="field">
-												<label className="label">Old Password</label>
+												<label
+														className="label"
+														style={{ color: "white" }}
+												>Old Password</label>
 												<div className="control has-icons-left has-icons-right">
 														<input
 																required
@@ -110,12 +115,15 @@ class ResetPassword extends Component {
 																onChange={this.handleChange}
 														/>
 														<span className="icon is-small is-left">
-								<i className="fas fa-lock">{null}</i>
-							</span>
+															<i className="fas fa-lock">{null}</i>
+														</span>
 												</div>
 										</div>
 										<div className="field">
-												<label className="label">New Password</label>
+												<label
+														className="label"
+														style={{ color: "white" }}
+												>New Password</label>
 												<div className="control has-icons-left has-icons-right">
 														<input
 																required
@@ -126,12 +134,12 @@ class ResetPassword extends Component {
 																onChange={this.handleChange}
 														/>
 														<span className="icon is-small is-left">
-								<i className="fas fa-lock">{null}</i>
-							</span>
+																<i className="fas fa-lock">{null}</i>
+														</span>
 														{this.state.notifyPasswordLength ? (
 																<span className="icon is-small is-right">
-									<i className="fas fa-exclamation-triangle">{null}</i>
-								</span>
+																	<i className="fas fa-exclamation-triangle">{null}</i>
+																</span>
 														) : null}
 												</div>
 												{this.state.notifyPasswordLength}

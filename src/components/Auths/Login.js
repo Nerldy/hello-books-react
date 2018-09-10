@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import API from "../../utils/api";
@@ -48,7 +49,7 @@ class Login extends Component {
 								localStorage.setItem("username", this.state.username);
 
 								// Add Authorization to the header
-								API.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("auth_token");
+								API.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem("auth_token")}`;
 
 								// redirect user to the dashboard
 								this.props.history.replace("/dashboard/books");

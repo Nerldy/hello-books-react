@@ -27,7 +27,7 @@ class UserDashboard extends Component {
 		render() {
 				// if is logged out, redirect user to the login page
 				if (this.state.isLoggedOut) {
-						return <Redirect to={"/login"} />;
+						return <Redirect to="/login" />;
 				}
 
 				return localStorage.getItem("auth_token") ? (
@@ -49,10 +49,10 @@ class UserDashboard extends Component {
 																				className="navbar-burger burger"
 																				data-target="navbarMenuHeroA"
 																		>
-										<span>{}</span>
-										<span>{}</span>
-										<span>{}</span>
-									</span>
+																				<span>{}</span>
+																				<span>{}</span>
+																				<span>{}</span>
+																		</span>
 																</div>
 																<nav
 																		id="navbarMenuHeroA"
@@ -89,13 +89,13 @@ class UserDashboard extends Component {
 																						Settings
 																				</NavLink>
 																				<span className="navbar-item">
-											<button
-													onClick={this.handleLogout}
-													className="button is-success is-inverted"
-											>
-												Logout
-											</button>
-										</span>
+																					<button
+																							onClick={this.handleLogout}
+																							className="button is-success is-inverted"
+																					>
+																						Logout
+																					</button>
+																				</span>
 																		</div>
 																</nav>
 														</div>
@@ -137,7 +137,7 @@ class UserDashboard extends Component {
 								</section>
 						</Fragment>
 				) : (
-						<Redirect to={"/login"} />
+						<Redirect to="/login" />
 				);
 		}
 }

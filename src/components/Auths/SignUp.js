@@ -51,7 +51,8 @@ class SignUp extends Component {
 				// notify user when password is less than 8 characters
 				if (e.target.name === "password" && e.target.value.length < 8) {
 						this.setState({
-								notifyPasswordLength: <p className="help is-danger">Password length must not be less than 8</p>,
+								notifyPasswordLength: <p className="help is-danger">Password length must not be less
+										than 8</p>,
 								hasTyped: true
 						});
 				} else if (e.target.name === "password" && e.target.value.length >= 8) {
@@ -95,7 +96,7 @@ class SignUp extends Component {
 								localStorage.setItem("username", this.state.username);
 
 								// Add Authorization to the header
-								API.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("auth_token");
+								API.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem("auth_token")}`;
 								this.setState({ isLogged: true });
 						})
 						.catch(err => {
@@ -114,7 +115,7 @@ class SignUp extends Component {
 								}
 
 								this.setState({ errorMessage: err.response.data.message });
-								return <Redirect to={"/signup"} />;
+								return <Redirect to="/signup" />;
 						});
 		};
 
@@ -150,7 +151,7 @@ class SignUp extends Component {
 
 				// if logged in, redirect to dashboard
 				if (this.state.isLogged) {
-						return <Redirect to={"/dashboard/books"} />;
+						return <Redirect to="/dashboard/books" />;
 				}
 
 				// add success class name to input

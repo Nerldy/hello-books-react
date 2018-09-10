@@ -32,18 +32,18 @@ const Home = () => {
 																</div>
 														</div>
 														<nav className="auth-link">
-																<NavLink to={`/signup`}>Sign Up</NavLink>
+																<NavLink to="/signup">Sign Up</NavLink>
 																<span>|</span>
-																<NavLink to={`/login`}>Login</NavLink>
+																<NavLink to="/login">Login</NavLink>
 														</nav>
 														<div className="main-content-area">
 																<Switch>
 																		<Route
-																				path={`/signup`}
+																				path="/signup"
 																				component={SignUp}
 																		/>
 																		<Route
-																				path={`/login`}
+																				path="/login"
 																				component={Login}
 																		/>
 																</Switch>

@@ -62,7 +62,7 @@ class UserBooks extends Component {
 								// if token has expired redirect user to the login page
 								if (err.response.data.message === "Expired token. Please login to get a new token") {
 										localStorage.clear();
-										return <Redirect to={"/login"} />;
+										return <Redirect to="/login" />;
 								}
 						});
 		};
