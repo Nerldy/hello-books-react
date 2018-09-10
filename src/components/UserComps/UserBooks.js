@@ -72,14 +72,12 @@ class UserBooks extends Component {
 		 * @param id
 		 */
 		handleDeleteBook = id => {
-
-				console.log(`delete book ${id}`);
 				swal({
 						title: "Are you sure you want to delete this book?",
 						text: "Once deleted, you will not be able to recover this book from the database",
 						icon: "warning",
 						buttons: true,
-						dangerMode: true
+						dangerMode: false
 				})
 						.then(willDelete => {
 								if (willDelete) {
@@ -107,15 +105,29 @@ class UserBooks extends Component {
 		 * @param bookTitle
 		 */
 		handleBorrowBook = (id, bookTitle) => {
-
-				this.props
-						.postData(id)
-						.then(res => {
-								this.setState(currentState => ({
-										books: currentState.books.filter(book => book.id !== id),
-										borrowMessage: `You have borrowed the book titled ${bookTitle}. It has now
-                been added to your library`
-								}));
+				swal({
+						title: `Do you want to borrow ${bookTitle}?`,
+						text: "This will be added to you library",
+						icon: "warning",
+						buttons: true,
+						dangerMode: false
+				})
+						.then(willDelete => {
+								if (willDelete) {
+										this.props
+												.postData(id)
+												.then(res => {
+														this.setState(currentState => ({
+																books: currentState.books.filter(book => book.id !== id)
+														}));
+														swal(`${bookTitle} has now been added to your library`, {
+																icon: "success"
+														});
+												})
+												.catch(err => console.log(err.response));
+								} else {
+										swal(`Didn't borrow ${bookTitle}`);
+								}
 						})
 						.catch(err => {
 								this.setState({
@@ -124,13 +136,21 @@ class UserBooks extends Component {
 						});
 		};
 
+		/**
+		 * deletes notification from the view
+		 */
+		handleDeleteNotification = () => {
+				this.setState({ borrowMessage: "" });
+		};
+
 		render() {
 				let apiBooks; // book card container
 				let adminAddNewBookButton;
+				let borrowMessage;
 
 				// admin add new book button
 				if (localStorage.getItem("is_admin") === "true") {
-						adminAddNewBookButton = <NewBookForm fetchBooks={this.fetchBooks}/>;
+						adminAddNewBookButton = <NewBookForm fetchBooks={this.fetchBooks} />;
 				}
 
 				// if books are available return each book details
@@ -150,10 +170,22 @@ class UserBooks extends Component {
 
 				// if book borrow message is available, show user
 				if (this.state.borrowMessage) {
-						alert(`${this.state.borrowMessage}`);
+						borrowMessage = (
+								<div className="notification is-danger">
+										<button
+												className="delete"
+												onClick={this.handleDeleteNotification}
+										>
+												{null}
+										</button>
+										{this.state.borrowMessage}
+								</div>
+						);
 				}
 				return (
 						<Fragment>
+								{/*show borrow message */}
+								{borrowMessage}
 								<h2>Books</h2>
 								{adminAddNewBookButton}
 								{/* render each book or show no book */}
