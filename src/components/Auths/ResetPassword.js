@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { validateEmail } from "../../utils/helperFuncs";
 import API from "../../utils/api";
 import { withRouter } from "react-router-dom";
 
