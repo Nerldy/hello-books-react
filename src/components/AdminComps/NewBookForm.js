@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import API from "../../utils/api";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 /**
  * Form for creating a new book
